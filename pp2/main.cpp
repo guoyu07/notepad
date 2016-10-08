@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "controller/ttt_controller.h"
+#include "controller/TTTController.h"
 
 int main() {
 
@@ -16,7 +16,7 @@ int main() {
 //    Board  board(Player(name1,symbol1),Player(name2,symbol2));
 //    board.start();
 
-    ttt_controller controller;
+    TTTController controller;
     controller.createPlayer(name1,symbol1,1);
     controller.createPlayer(name2,symbol2,2);
 

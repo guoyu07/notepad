@@ -13,6 +13,13 @@ class Player {
     std::string name;
     char symbol;
 public:
+    int getId() const;
+
+    void setId(int id);
+
+private:
+    int id;
+public:
     const std::string &getName() const;
 
     void setName(std::string &name);
@@ -21,7 +28,11 @@ public:
 
     void setSymbol(char symbol);
 
+    const Player * getInstance() const{return this;}
+
     Player();
+
+    Player(char symbol);
 
     Player(const std::string &name, char symbol);
 

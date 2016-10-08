@@ -4,20 +4,13 @@
 
 #include "Player.h"
 
-Player::Player(){
-    name = "No Name";
-    symbol = '*';
-}
+Player::Player(): name("No name"), symbol('*'), id(-1){}
 
-Player::Player(const std::string &name, char symbol) {
-    Player::name = name;
-    Player::symbol = symbol;
-}
+Player::Player(char symbol): name("null"), symbol(symbol), id(-2){};
 
-Player::Player(const std::string &name, const std::string symbol) {
-    Player::name = name;
-    Player::symbol = symbol[0];
-}
+Player::Player(const std::string &name, char symbol) : name(name), symbol(symbol), id(rand()%10000){}
+
+Player::Player(const std::string &name, const std::string symbol) : name(name), symbol(symbol[0]), id(rand()%10000){}
 
 const std::string &Player::getName() const {
     return name;
@@ -33,4 +26,12 @@ const char Player::getSymbol() const {
 
 void Player::setSymbol(char symbol) {
     Player::symbol = symbol;
+}
+
+int Player::getId() const {
+    return id;
+}
+
+void Player::setId(int id) {
+    Player::id = id;
 }

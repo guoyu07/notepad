@@ -10,7 +10,8 @@
 #include "Player.h"
 
 class Board {
-    std::string cursor;
+
+    Player cursor[9];
     Player player1;
     Player player2;
 public:
@@ -22,6 +23,7 @@ public:
     char whoWon();
     void start();
     void reset();
+    bool compare(const Player, const Player);
 };
 
 
