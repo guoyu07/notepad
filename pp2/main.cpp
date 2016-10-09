@@ -20,6 +20,30 @@ int main() {
     controller.createPlayer(name1,symbol1,1);
     controller.createPlayer(name2,symbol2,2);
 
-    controller.startGame();
+    controller.startNewGame();
+    int choice;
+    int turn =1;
+    std::cout << "Choose you move ..." << std::endl;
+    while(!controller.determineWinner()){
+        std::cout << controller.getGameDisplay();
+        if(turn%2){
+            std::cout << controller.getPlayerName(1) << "'s turn:" ;
+            std::cin >> choice;
+            if(controller.setSelection(choice-1,1)) turn++;
+        }else{
+            std::cout << controller.getPlayerName(2) << "'s turn:" ;
+            std::cin >> choice;
+            if(controller.setSelection(choice-1,2)) turn++;
+        }
+
+    }
+
+    switch (controller.determineWinner()){
+        case 1: std::cout << controller.getPlayerName(1) << " has won!" << std::endl; break;
+        case 2: std::cout << controller.getPlayerName(2) << " has won!" << std::endl;break;
+        case 3: std::cout << "Game is tie!"<< std::endl;break;
+        default: std::cout << "Can't determine who won ask the one who created me!"<< std::endl;
+
+    }
 
 }
