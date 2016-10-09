@@ -6,7 +6,7 @@
 
 Player::Player(): name("No name"), symbol('*'), id(-1){}
 
-Player::Player(char symbol): name("null"), symbol(symbol), id(-2){};
+Player::Player(char symbol): name("null"), symbol(symbol), id(-rand()%10000){};
 
 Player::Player(const std::string &name, char symbol) : name(name), symbol(symbol), id(rand()%10000){}
 
@@ -16,7 +16,7 @@ const std::string &Player::getName() const {
     return name;
 }
 
-void Player::setName(std::string &name) {
+void Player::setName(std::string name) {
     Player::name = name;
 }
 

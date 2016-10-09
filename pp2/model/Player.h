@@ -22,13 +22,11 @@ private:
 public:
     const std::string &getName() const;
 
-    void setName(std::string &name);
+    void setName(std::string name);
 
     const char getSymbol() const;
 
     void setSymbol(char symbol);
-
-    const Player * getInstance() const{return this;}
 
     Player();
 

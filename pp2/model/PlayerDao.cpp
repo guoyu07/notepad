@@ -49,16 +49,23 @@ std::list<Player> PlayerDao::getAllPlayers() {
 
 bool PlayerDao::isPresent(const std::string& name) {
     if(!inFile.is_open()){inFile.open(fileName);}
-    std::string tmp_str;
-    if(!inFile.eof()) inFile >> tmp_str;
-    while(!inFile.eof()){
-        if(tmp_str == name){
-            inFile.close();
-            return true;
-       }
-        inFile >> tmp_str;
+    if(inFile.good()){
+        std::string tmp_str;
+        if(!inFile.eof()) inFile >> tmp_str;
+        while(!inFile.eof()){
+            if(tmp_str == name){
+                inFile.close();
+                return true;
+            }
+            inFile >> tmp_str;inFile >> tmp_str;    //To skip symbol
+        }
+        return false;
+
+    }else{
+        std::cout << "Unable to find" + fileName + "\n";
+        return false;
+
     }
-    return false;
 }
 
 //int main(){
