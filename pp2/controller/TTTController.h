@@ -11,6 +11,7 @@
 #include "../model/Board.h"
 
 class TTTController {
+
     Player player1, player2;
     Board board;
 public:
@@ -21,6 +22,7 @@ public:
     bool setSelection(int, int, int);
     int determineWinner();
     std::string getGameDisplay();
+    bool compare(const Player& , const Player&);
 };
 
 
