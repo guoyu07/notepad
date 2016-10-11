@@ -20,6 +20,7 @@ public:
     void createPlayer(std::string,std::string,int);         //required
     void createPlayer(std::string playerJsonObject);        //required
     std::string getPlayerName(int currentPlayer);
+    std::string getAllSavedPlayers();                       //required
     void startNewGame();                                    //required
     bool setSelection(std::string gameJsonObject);          //required
     bool setSelection(int row, int col, int currentPlayer); //required
