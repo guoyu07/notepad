@@ -15,8 +15,9 @@ cells.forEach(function (cell) {
     cell.addEventListener('click',handler);
 });
 
-function eventListner(cell){
-}
+var player1 = document.getElementById('p2Name');
+player1.innerHTML = "Hello";
+
 
 function getPlayer(){
     if(player == 1){
