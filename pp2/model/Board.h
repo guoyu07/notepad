@@ -11,12 +11,12 @@
 #include "Player.h"
 
 class Board {
-//to-do
-
+//TODO reverse access to private before submission
+public:
     std::array<Player,9> cursor;
     Player player1;
     Player player2;
-public:
+
     Board();
     Board(const Player&, const Player&);
     const std::array<Player, 9> getCursor() const;

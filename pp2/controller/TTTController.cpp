@@ -267,26 +267,26 @@ void TTTController::partParseJson(std::string &json, int &key) {
 
 }
 
-int main(){
-    TTTController ttt;
-
-    std::string temp;
-    ttt.createPlayer("Raghuvaran","x",1);
-    ttt.createPlayer("Sravya","y",2);
-    ttt.startNewGame();
-    std::cin >> temp;
-    ttt.setSelection(temp);
-    std::cin >> temp;
-    ttt.setSelection(temp);
-
-
-
-//    ttt.board = Board(ttt.player1,ttt.player2);
-//    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
-//    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
-//    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
-    std::cout << ttt.getGameDisplay(true);
-    std::cout << ttt.getGameDisplay(false);
-
-
-}
+//int main(){
+//    TTTController ttt;
+//
+//    std::string temp;
+//    ttt.createPlayer("Raghuvaran","x",1);
+//    ttt.createPlayer("Sravya","y",2);
+//    ttt.startNewGame();
+//    std::cin >> temp;
+//    ttt.setSelection(temp);
+//    std::cin >> temp;
+//    ttt.setSelection(temp);
+//
+//
+//
+////    ttt.board = Board(ttt.player1,ttt.player2);
+////    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
+////    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
+////    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
+//    std::cout << ttt.getGameDisplay(true);
+//    std::cout << ttt.getGameDisplay(false);
+//
+//
+//}

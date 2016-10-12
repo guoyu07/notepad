@@ -32,6 +32,30 @@ void partParseJson(std::string& json, std::string& key){
 
 }
 
+void partParseJson(std::string& json, int& key){
+    unsigned long endCursor =0;
+    unsigned long cursor = json.find(":");
+
+    if(json.find(":\"")!= string::npos){
+        cursor+=2;
+        key = std::stoi(json.substr(cursor,json.find("\"",cursor)-cursor));
+        endCursor = json.find("\"",cursor)+2;
+    }
+    else if(json.find(",")!= string::npos){
+        cursor+=1;
+        key = stoi(json.substr(cursor,json.find(",",cursor)-cursor));
+        endCursor = json.find(",",cursor)+2;
+    }
+    else {
+        cursor+=1;
+        key = stoi(json.substr(cursor,json.find("}",cursor)-cursor));
+        endCursor = json.find("}",cursor)+1;
+    }
+
+    json = json.substr(endCursor);
+
+}
+
 int main(){
 
     //string jsonUP = "{\"name\":\"Raghuvaran\",\"marker\": 1,\"playerNum\":\"Hi There\"}";
@@ -60,12 +84,12 @@ int main(){
     partParseJson(jsonStr,marker);
     partParseJson(jsonStr,playerNum);
 
-    string dummy1,dummy2, dummy3;
+    string dummy1,dummy2; int dummy3;
     partParseJson(jsonStr,dummy1);
     partParseJson(jsonStr,dummy2);
     partParseJson(jsonStr,dummy3);
 
-    cout << dummy1 << endl;cout << dummy2 << endl;cout << dummy3 << endl;
+    cout << dummy1 << endl;cout << dummy2 << endl;cout << dummy3+1 << endl;
 
 
 //    int cursor = jsonStr.find(":");
