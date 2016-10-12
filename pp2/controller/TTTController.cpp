@@ -37,6 +37,7 @@ void TTTController::createPlayer(std::string name, std::string marker, int playe
     // board.setPlayer(name, marker,playerNum);
 }
 
+//done
 void TTTController::createPlayer(std::string playerJsonObject) {
     std::string name, marker;
     int playerNum =1;
@@ -56,6 +57,21 @@ std::string TTTController::getPlayerName(int currentPlayer) {
         case 2: return player2.getName();
         default: return "No Player exists";
     }
+}
+
+//done
+std::string TTTController::getAllSavedPlayers() {
+    PlayerDao playerDao;
+    std::list<Player> playerList = playerDao.getAllPlayers();
+    std::string playerStr;
+    playerStr += "{\"players\":[";
+    for(Player i: playerList){
+        playerStr += "{\"name\":\"" + i.getName() + "\",\"marker\":\"" + i.getSymbol() + "\"},";
+    }
+    playerStr.pop_back();
+    playerStr += "]}";
+
+    return playerStr;
 }
 
 //done - maybe later tweak
@@ -225,9 +241,8 @@ void TTTController::partParseJson(std::string &json, int &key) {
 
 int main(){
     TTTController ttt;
-    std::string playerJson;
-    std::cin >> playerJson;
-    ttt.createPlayer(playerJson);
+
+    std::cout << ttt.getAllSavedPlayers();
 
 
 
@@ -235,6 +250,6 @@ int main(){
 //    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
 //    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
 //    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
-    std::cout << ttt.player2.getSymbol() << std::endl;
+
 
 }
