@@ -80,6 +80,17 @@ void TTTController::startNewGame() {
 }
 
 //done
+bool TTTController::setSelection(std::string gameJsonObject) {
+    int row,col,currentPlayer;
+
+    partParseJson(gameJsonObject,row);
+    partParseJson(gameJsonObject,col);
+    partParseJson(gameJsonObject,currentPlayer);
+
+    return setSelection(row,col,currentPlayer);
+}
+
+//done
 bool TTTController::setSelection(int row, int col, int currentPlayer) {
     if(!(row>=0 && row <=2 && col >=0 && col <= 2)) return false;
     switch (currentPlayer){
@@ -164,6 +175,23 @@ int TTTController::determineWinner() {
 }
 
 //done
+std::string TTTController::getGameDisplay(bool isJson) {
+    if(!isJson) return getGameDisplay();
+
+    std::string cursorStr;
+    cursorStr += "{\"gameBoard\":[";
+
+    for(int i=0; i<3; i++){
+        for(int j=0; j<3; j++){
+            cursorStr += "{\"row\":"; cursorStr += std::to_string(i) ; cursorStr+= ",\"col\":"; cursorStr+= std::to_string(j) + ",\"marker\":\""; cursorStr.push_back(board.getCursor()[3*i+j].getSymbol()); cursorStr += "\"},";
+        }
+    }
+    cursorStr.pop_back();
+    cursorStr += "]}";
+    return cursorStr;
+}
+
+//done
 std::string TTTController::getGameDisplay() {
     std::array<Player,9> cursor = board.getCursor();
     std::string out = "";
@@ -242,7 +270,14 @@ void TTTController::partParseJson(std::string &json, int &key) {
 int main(){
     TTTController ttt;
 
-    std::cout << ttt.getAllSavedPlayers();
+    std::string temp;
+    ttt.createPlayer("Raghuvaran","x",1);
+    ttt.createPlayer("Sravya","y",2);
+    ttt.startNewGame();
+    std::cin >> temp;
+    ttt.setSelection(temp);
+    std::cin >> temp;
+    ttt.setSelection(temp);
 
 
 
@@ -250,6 +285,8 @@ int main(){
 //    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
 //    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
 //    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
+    std::cout << ttt.getGameDisplay(true);
+    std::cout << ttt.getGameDisplay(false);
 
 
 }
