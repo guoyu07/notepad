@@ -30,6 +30,7 @@ public:
     std::string getGameDisplay(bool isJson);                //required
     std::string getGameDisplay();                           //required
     bool compare(const Player& , const Player&);
+    void partParseJson(std::string& json, std::string& key);
 };
 
 

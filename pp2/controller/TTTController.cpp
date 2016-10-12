@@ -37,6 +37,10 @@ void TTTController::createPlayer(std::string name, std::string marker, int playe
     // board.setPlayer(name, marker,playerNum);
 }
 
+void TTTController::createPlayer(std::string playerJsonObject) {
+
+}
+
 //done
 std::string TTTController::getPlayerName(int currentPlayer) {
     switch(currentPlayer){
@@ -210,6 +214,31 @@ std::string TTTController::getGameDisplay() {
 //done
 bool TTTController::compare(const Player& p1, const Player& p2){
     return p1.getId() == p2.getId();
+}
+
+//done - maybe tweaks required
+void TTTController::partParseJson(std::string &json, std::string &key) {
+    unsigned long endCursor =0;
+    unsigned long cursor = json.find(":");
+
+    if(json.find(":\"")!= std::string::npos){
+        cursor+=2;
+        key = json.substr(cursor,json.find("\"",cursor)-cursor);
+        endCursor = json.find("\"",cursor)+2;
+    }
+    else if(json.find(",")!= std::string::npos){
+        cursor+=1;
+        key = json.substr(cursor,json.find(",",cursor)-cursor);
+        endCursor = json.find(",",cursor)+2;
+    }
+    else {
+        cursor+=1;
+        key = json.substr(cursor,json.find("}",cursor)-cursor);
+        endCursor = json.find("}",cursor)+1;
+    }
+
+    json = json.substr(endCursor);
+
 }
 
 //int main(){
