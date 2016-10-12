@@ -4,12 +4,13 @@
 
 #include <iostream>
 #include <cstring>
+#include <sstream>
 
 using namespace std;
 
-void partParseJson(std::string& json, std::string& key, unsigned long& cursor){
+void partParseJson(std::string& json, std::string& key){
     unsigned long endCursor =0;
-    cursor = json.find(":");
+    unsigned long cursor = json.find(":");
 
     if(json.find(":\"")!= string::npos){
         cursor+=2;
@@ -33,8 +34,10 @@ void partParseJson(std::string& json, std::string& key, unsigned long& cursor){
 
 int main(){
 
-    string jsonUP = "{\"name\":\"Raghuvaran\",\"marker\":\"x\",\"playerNum\":\"Hi There\"}";
+    //string jsonUP = "{\"name\":\"Raghuvaran\",\"marker\": 1,\"playerNum\":\"Hi There\"}";
+    string jsonUP;
 
+    cin >> jsonUP;
     string jsonStr;
 
     jsonStr = jsonUP;
@@ -45,17 +48,25 @@ int main(){
 
     char* json;
 
-    json = new char[jsonUP.length()+1];
+    json = new char[jsonStr.length()+1];
 
-    strcpy(json,jsonUP.c_str());
+    strcpy(json,jsonStr.c_str());
 
     string name, marker, playerNum;//, switcher =0;
 
     unsigned long cursor = 0;
 
-    partParseJson(jsonStr,name,cursor);
-    partParseJson(jsonStr,marker,cursor);
-    partParseJson(jsonStr,playerNum,cursor);
+    partParseJson(jsonStr,name);
+    partParseJson(jsonStr,marker);
+    partParseJson(jsonStr,playerNum);
+
+    string dummy1,dummy2, dummy3;
+    partParseJson(jsonStr,dummy1);
+    partParseJson(jsonStr,dummy2);
+    partParseJson(jsonStr,dummy3);
+
+    cout << dummy1 << endl;cout << dummy2 << endl;cout << dummy3 << endl;
+
 
 //    int cursor = jsonStr.find(":");
 //
