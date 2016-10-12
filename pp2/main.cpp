@@ -1,17 +1,26 @@
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 #include "controller/TTTController.h"
 
 int main() {
+    std::cout << "content-type: text/html\n\n";
+
     //receive json into string
     std::stringstream inBuff;
 
-//    inBuff >> std::cin.rdbuf();
+   inBuff << std::cin.rdbuf();
 
     std::string inJsonRequest = inBuff.str();
 
-    std::cin >> inJsonRequest;
+//    std::ofstream file("jsonOut");
+//    file << inJsonRequest;
+//    file.close();
+//
+//    std::cout << inJsonRequest ; return 0;
+
+//    std::cin >> inJsonRequest;
 
     TTTController tttController;
     //check string for identifiers
@@ -22,8 +31,7 @@ int main() {
         case 'G':
             std::cout << tttController.getAllSavedPlayers(); break;
         //'G' -> @return getAllSavedPlayers
-        case 'P':
-
+        case 'P': {
             //'P' -> has
             /*
              * Player1: Name, Marker
@@ -35,30 +43,29 @@ int main() {
             std::string player_name, player_marker, cursor;
 
             //parse and create new players
-            tttController.partParseJson(inJsonRequest,player_name);
-            tttController.partParseJson(inJsonRequest,player_marker);
-            tttController.createPlayer(player_name,player_marker,1);
-            tttController.partParseJson(inJsonRequest,player_name);
-            tttController.partParseJson(inJsonRequest,player_marker);
-            tttController.createPlayer(player_name,player_marker,2);
+            tttController.partParseJson(inJsonRequest, player_name);
+            tttController.partParseJson(inJsonRequest, player_marker);
+            tttController.createPlayer(player_name, player_marker, 1);
+            tttController.partParseJson(inJsonRequest, player_name);
+            tttController.partParseJson(inJsonRequest, player_marker);
+            tttController.createPlayer(player_name, player_marker, 2);
 
 
             tttController.startNewGame();
 
             //parse cursor into array
-            tttController.partParseJson(inJsonRequest,cursor);
+            tttController.partParseJson(inJsonRequest, cursor);
             // setSelection accordingly
-            for(int i=0; i<9; i++){
-                if(cursor[i]=='1') tttController.setSelection(i,1);
-                else if(cursor[i]=='2') tttController.setSelection(i,2);
+            for (int i = 0; i < 9; i++) {
+                if (cursor[i] == '1') tttController.setSelection(i, 1);
+                else if (cursor[i] == '2') tttController.setSelection(i, 2);
             }
             cursor = tttController.getGameDisplay(true);
             cursor.pop_back();
-            std::cout << cursor << ",\"winner\":"<< tttController.determineWinner() << "}";
-
-
-         break;
+            std::cout << cursor << ",\"winner\":" << tttController.determineWinner() << "}";
+            break;
+        }
         default:
-        std::cout << "{\"error\":1}";
+        std::cout << "{\"error\":147}";
     }
 }

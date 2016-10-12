@@ -19,7 +19,7 @@ void TTTController::createPlayer(std::string name, std::string marker, int playe
 
     switch (playerNum){
         case 1:
-            if(playerDao.isPresent(name)){              //Does player exist?
+            if(playerDao.isPresent(name)){              //Does player_num exist?
                 player1 = playerDao.getPlayer(name);    //True; retrieve
             }else{
                 player1 = Player(name, marker);         //False; Create and save
@@ -282,12 +282,12 @@ void TTTController::partParseJson(std::string &json, int &key) {
 //
 //
 //
-////    ttt.board = Board(ttt.player1,ttt.player2);
-////    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
-////    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
-////    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
+//    ttt.board = Board(ttt.player1,ttt.player2);
+//    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
+//    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
+//    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
 //    std::cout << ttt.getGameDisplay(true);
-//    std::cout << ttt.getGameDisplay(false);
+//    std::cout << ttt.getAllSavedPlayers();
 //
 //
 //}

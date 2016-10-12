@@ -3,6 +3,10 @@ html {
     box-sizing: border-box;
 }
 
+.done{
+    display: none;
+}
+
 #table > .col-md-4{
     font-size: 100px;
     text-align: center;
@@ -97,7 +101,7 @@ body {
     top: 50%;
     width: 600px;
     margin-left: -300px;
-    margin-top: 290px;
+    margin-top: 240px;
     text-align: center;
     cursor: pointer;
     -webkit-user-select: none;
@@ -182,3 +186,20 @@ body {
 .scores .turn {
     opacity: 0.4;
 }
+
+#playerSel1{
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    width: 300px;
+    margin-top: 240px;
+}
+
+#playerSel2{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    width: 300px;
+    margin-top: 240px;
+}
+

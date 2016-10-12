@@ -18,21 +18,48 @@
   </head>
   <body>
   <div id="table">
-      <div id ="one" class="col-md-4">&nbsp;</div>
-      <div id ="two" class="col-md-4">&nbsp;</div>
-      <div id ="three" class="col-md-4">&nbsp;</div>
-      <div id ="four" class="col-md-4">&nbsp;</div>
-      <div id ="five" class="col-md-4">&nbsp;</div>
-      <div id ="six" class="col-md-4">&nbsp;</div>
-      <div id ="seven" class="col-md-4">&nbsp;</div>
-      <div id ="eight" class="col-md-4">&nbsp;</div>
-      <div id ="nine" class="col-md-4">&nbsp;</div>
+      <div id ="1" class="col-md-4">&nbsp;</div>
+      <div id ="2" class="col-md-4">&nbsp;</div>
+      <div id ="3" class="col-md-4">&nbsp;</div>
+      <div id ="4" class="col-md-4">&nbsp;</div>
+      <div id ="5" class="col-md-4">&nbsp;</div>
+      <div id ="6" class="col-md-4">&nbsp;</div>
+      <div id ="7" class="col-md-4">&nbsp;</div>
+      <div id ="8" class="col-md-4">&nbsp;</div>
+      <div id ="9" class="col-md-4">&nbsp;</div>
   </div>
-  
-<div id="leaderBoard" class="scores p1">
-<p class="player1"><span id="p1Name" class="p1 p1Name">Player</span><span class="p2">Player 1</span> <span class="score">0</span></p>
-<p class="player2"><span id="p2Name" class="p1">Player</span><span class="p2">Player 2</span> <span class="score">0</span></p>
-<p class="final">Result<span id="result" class="score">&nbsp;Player1</span></p>
+  <div class="form-group col-md-4" id="playerSel1">
+      <label for="sel1">Select Player 1:</label>
+      <select class="form-control" id="sel1">
+          <option>--Select--</option>
+          <!--Player info goes here-->
+      </select>
+
+      <label for="usr1">Name:</label>
+      <input type="text" class="form-control" id="usr1">
+      <label for="mrkr1">Marker:</label>
+      <input type="text" class="form-control" id="mrkr1">
+      <h6><b>NOTE:</b> Existing marker is preferred over the new if 'Name' already exists</h6>
+      <button type="button" class="btn btn-default" id="btn1">Done</button>
+  </div>
+
+  <div class="form-group col-md-4" id="playerSel2">
+          <label for="sel2">Select Player 2:</label>
+          <select class="form-control" id="sel2">
+              <option>--Select--</option>
+              <!--Player info goes here-->
+          </select>
+      <label for="usr2">Name:</label>
+      <input type="text" class="form-control" id="usr2">
+      <label for="mrkr2">Marker:</label>
+      <input type="text" class="form-control" id="mrkr2">
+      <h6><b>NOTE:</b> Existing marker is preferred over the new if 'Name' already exists</h6>
+          <button type="button" class="btn btn-default" id="btn2">Done</button>
+  </div>
+<div id="leaderBoard col-md-4" class="scores p1">
+<p class="player1"><span id="p1_n" class="p1">Player 1</span><span class="p2">Player 1</span> <span id="p1_m" class="score">x</span></p>
+<p class="player2"><span id="p2_n" class="p1">Player 2</span><span class="p2">Player 2</span> <span id="p2_m" class="score">o</span></p>
+<div class="result done"><p>Result<span id="winner" class="score">&nbsp;Player1</span></p></div>
 </div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<!-- <script src="js/jquery-1.11.3.min.js"></script>-->
