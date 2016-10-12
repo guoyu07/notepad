@@ -61,7 +61,7 @@ bool PlayerDao::isPresent(const std::string& name) {
         }
         return false;
 
-    }else{
+    }else{//TODO remove this line before submission
         std::cout << "Unable to find" + fileName + "\n";
         return false;
 
