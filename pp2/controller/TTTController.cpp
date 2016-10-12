@@ -38,6 +38,14 @@ void TTTController::createPlayer(std::string name, std::string marker, int playe
 }
 
 void TTTController::createPlayer(std::string playerJsonObject) {
+    std::string name, marker;
+    int playerNum =1;
+
+    partParseJson(playerJsonObject,name);
+    partParseJson(playerJsonObject,marker);
+    partParseJson(playerJsonObject,playerNum);
+
+    createPlayer(name,marker,playerNum);
 
 }
 
@@ -49,56 +57,6 @@ std::string TTTController::getPlayerName(int currentPlayer) {
         default: return "No Player exists";
     }
 }
-//void TTTController::startGame(){
-//    board = Board(player1,player2);
-//    std::cout << board.printBoard() << std::endl;
-//    int turn = 1;
-//    int pos = -1;
-//
-//    while (board.whoWon() == 'R'){
-//
-//        if(turn % 2){
-//            std::cout << player1.getName() << "'s turn:";
-//            std::cin >> pos;
-//	    std::cout << std::endl;
-//            if(!board.markSymbol(player1,pos)){
-//                turn++;
-//            }
-//        }else{
-//            std::cout << player2.getName() << "'s turn:";
-//            std::cin >> pos;
-//	    std::cout << std::endl;
-//            if(!board.markSymbol(player2,pos)){
-//                turn++;
-//            }
-//        }
-//	if (std::cin.eof()==1) {
-//		std::cin.clear();
-//		//std::cin.ignore();
-//		continue;
-//	}
-//	if(pos==0){
-//            std::cin.clear();
-//            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-//        }
-//	for(int m = 0; m <2; m++){std::cout << "                                                " << std::endl;}
-//        std::cout << "\033[12A";
-//	for(int m = 0; m <10; m++){std::cout << "                                                " << std::endl;}
-//        std::cout << "\033[10A";
-//        std::cout << board.printBoard() << std::endl;
-//    }
-//
-//
-//    if(board.whoWon() == 'D') {
-//        std::cout << "The game is draw!" << std::endl;
-//    }else{
-//        if(player1.getSymbol() == board.whoWon()){
-//            std::cout << player1.getName() << " has won the game!" << std::endl;
-//        } else{
-//            std::cout << player2.getName() << " has won the game!" << std::endl;
-//        }
-//    }
-//}
 
 //done - maybe later tweak
 void TTTController::startNewGame() {
@@ -241,21 +199,42 @@ void TTTController::partParseJson(std::string &json, std::string &key) {
 
 }
 
-//int main(){
-//    TTTController ttt;
-//    std::string player1Name = "Raghuvaran";
-//    std::string player1Sym = "e";
-//    ttt.createPlayer(player1Name,player1Sym,1);ttt.createPlayer(player1Name,player1Sym,2);
-//    std::cout << ttt.setSelection(1,1,-1);
-//    std::cout << ttt.setSelection(1,-1,1);
-//    std::cout << ttt.setSelection(1,2,2);
-//    std::cout << ttt.setSelection(1,0,2);
-//
-//
-////    ttt.board = Board(ttt.player1,ttt.player2);
-////    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
-////    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
-////    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
-//    std::cout << ttt.board.getCursor()[3].getName() << std::endl;
-//
-//}
+void TTTController::partParseJson(std::string &json, int &key) {
+    unsigned long endCursor =0;
+    unsigned long cursor = json.find(":");
+
+    if(json.find(":\"")!= std::string::npos){
+        cursor+=2;
+        key = std::stoi(json.substr(cursor,json.find("\"",cursor)-cursor));
+        endCursor = json.find("\"",cursor)+2;
+    }
+    else if(json.find(",")!= std::string::npos){
+        cursor+=1;
+        key = std::stoi(json.substr(cursor,json.find(",",cursor)-cursor));
+        endCursor = json.find(",",cursor)+2;
+    }
+    else {
+        cursor+=1;
+        key = std::stoi(json.substr(cursor,json.find("}",cursor)-cursor));
+        endCursor = json.find("}",cursor)+1;
+    }
+
+    json = json.substr(endCursor);
+
+}
+
+int main(){
+    TTTController ttt;
+    std::string playerJson;
+    std::cin >> playerJson;
+    ttt.createPlayer(playerJson);
+
+
+
+//    ttt.board = Board(ttt.player1,ttt.player2);
+//    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
+//    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
+//    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
+    std::cout << ttt.player2.getSymbol() << std::endl;
+
+}
