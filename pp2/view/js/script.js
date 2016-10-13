@@ -3,14 +3,20 @@ var cgiPath = "cgi-bin/ttt.cgi";
 
 var playerList = {};
 
-var shootJson = {};
+var cursor = "000000000";
 
 var tmp_player = {
     1:{}, 2:{}
 
 };
 var player = {
-    1:{}, 2:{}
+    1:{
+        "name":"RV",
+        "marker":"x"
+    }, 2:{
+        "name":"SW",
+        "marker":"o"
+    }
 
 };
 
@@ -20,7 +26,7 @@ var sel2 = document.getElementById('sel2');
 var btn1 = document.getElementById('btn1');
 var btn2 = document.getElementById('btn2');
 
-var are_players_set = false;
+var are_players_set = true;
 
 var cells = Array.from(document.getElementById('table').children);
 var playResponse = {};
@@ -36,8 +42,8 @@ cells.forEach(function (cell) {
 
 	var handler = function(){
         if(are_players_set) {
-            display(cell.id);
-            getPlayer();
+            informPlaying(cell.id);
+            togglePlayer();
         }
 
 	cell.removeEventListener('click',handler);
@@ -66,10 +72,7 @@ btn2.addEventListener('click',function () {
 });
 
 
-
-
-
-function getPlayer(){
+function togglePlayer(){
     if(player_num == 1){
         player_num = 2;
     }else{
@@ -78,8 +81,11 @@ function getPlayer(){
 }
 
 
-function display(id){
-document.getElementById(id).innerHTML = id;
+function display(id,mark){
+var cell = document.getElementById(id);
+    cell.innerHTML = mark;
+    if(player_num == 1) cell.setAttribute('style','color:red');
+    else cell.setAttribute('style','color:blue');
     playResponse= {
         "player": player_num,
         "position": id
@@ -87,7 +93,7 @@ document.getElementById(id).innerHTML = id;
     console.log(JSON.stringify(playResponse));
 }
 
-
+//done
 function getAllPlayers(){
     var xhttp = new XMLHttpRequest();
     var outJson = {};
@@ -121,6 +127,7 @@ function getAllPlayers(){
 
 }
 
+//done
 function updatePlayerByDD(dropdown, p_name, p_marker,p_form){
     if(dd.selectedIndex == 0) return;
     console.log(playerList[dd.selectedIndex]);
@@ -132,6 +139,7 @@ function updatePlayerByDD(dropdown, p_name, p_marker,p_form){
 
 }
 
+//done
 function updatePlayerByForm(playerId, name_field, marker_field,form_class){
     tmp_player[playerId].name = document.getElementById(name_field).value;
     tmp_player[playerId].marker = document.getElementById(marker_field).value;
@@ -143,7 +151,7 @@ function updatePlayerByForm(playerId, name_field, marker_field,form_class){
     }
 }
 
-
+//not yet done
 function validatePlayers(){
     var xhttp = new XMLHttpRequest();
 
@@ -158,8 +166,63 @@ function validatePlayers(){
 
     xhttp.onreadystatechange = function () {
         var inJson = JSON.parse(this.responseText);
-        if(tmp_player[1].)
+        if(inJson.winner == -2){
+            document.getElementById('playerSel1').setAttribute('class','done');
+            player[1].name = inJson.player1_name;
+        }if(inJson.winner >= 0){
+            document.getElementById('playerSel1').setAttribute('class','done');
+            document.getElementById('playerSel2').setAttribute('class','done');
+        }
     }
 
 
 }
+
+function informPlaying(id) {
+    var shootJson = {};
+    shootJson.identifier = "P";
+    shootJson.player1_name = player[1].name;
+    shootJson.player1_marker = player[1].marker;
+    shootJson.player2_name = player[2].name;
+    shootJson.player2_marker = player[2].marker;
+    shootJson.cursor = cursor;
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST",cgiPath,true);
+    xhttp.send(JSON.stringify(shootJson));
+
+    xhttp.onreadystatechange = function () {
+        var inJson = JSON.parse(this.responseText);
+        displayBoard(inJson.cursor);
+        if(inJson.winner > 0 && inJson.winner <4){
+            declareWinner(inJson.winner);
+            are_players_set = false;
+        }
+
+    };
+
+}
+
+
+function displayBoard(cursor) {
+    var tmp = player_num;
+    player_num = 1;
+    for(var i=0; i <9; i++){
+        display(i,cursor[i]); //id, marker
+        togglePlayer();
+    }
+    player_num = tmp;
+}
+
+
+function declareWinner(winner) {
+    var result = document.getElementById('winner');
+    var resultDiv = document.getElementsByClassName('result');
+    switch(winner){
+        case 1: result.innerHTML = player[1].name; break;
+        case 2: result.innerHTML = player[2].name; break;
+        case 3: result.innerHTML = 'Tie'; break;
+    }
+    resultDiv.classList.remove('done');
+}
+
