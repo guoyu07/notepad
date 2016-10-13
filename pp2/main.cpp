@@ -60,9 +60,23 @@ int main() {
                 if (cursor[i] == '1') tttController.setSelection(i, 1);
                 else if (cursor[i] == '2') tttController.setSelection(i, 2);
             }
-            cursor = tttController.getGameDisplay(true);
-            cursor.pop_back();
-            std::cout << cursor << ",\"winner\":" << tttController.determineWinner() << "}";
+            cursor =  "{\"cursor\":\"" + tttController.getGameCursor() + "\"";
+
+            if(tttController.player1.getId() <0) std::cout << cursor << ",\"winner\":-1}";
+            else if(tttController.player2.getId()<0) std::cout << cursor << ",\"winner\":-2}";
+            else std::cout << cursor << ",\"winner\":" << tttController.determineWinner() << "}";
+            break;
+        }
+        case 'V':{
+            std::string player_name, player_marker;
+            tttController.partParseJson(inJsonRequest,player_name);
+            tttController.partParseJson(inJsonRequest,player_marker);
+            tttController.createPlayer(player_name,player_marker,1);
+
+            std::string players;
+
+
+
             break;
         }
         default:
