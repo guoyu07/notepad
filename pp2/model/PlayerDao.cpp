@@ -24,7 +24,8 @@ Player PlayerDao::getPlayer(std::string name) {
             std::getline(inFile,tmp_str);
             return Player(name, tmp_str);
         }
-        inFile >> tmp_str;
+        std::getline(inFile,tmp_str);
+        std::getline(inFile,tmp_str);
     }
     inFile.close();
     return Player();
@@ -39,7 +40,8 @@ std::list<Player> PlayerDao::getAllPlayers() {
         std::getline(inFile,tmp_sym_str);
     }
     while(!inFile.eof()){
-        playersList.push_back(Player(tmp_name_str,tmp_sym_str));
+        if(tmp_name_str == "" || tmp_sym_str == "") {}
+            else playersList.push_back(Player(tmp_name_str,tmp_sym_str));
         std::getline(inFile,tmp_name_str);
         std::getline(inFile,tmp_sym_str);
     }
@@ -48,20 +50,28 @@ std::list<Player> PlayerDao::getAllPlayers() {
 }
 
 bool PlayerDao::isPresent(const std::string& name) {
-    if(!inFile.is_open()){inFile.open(fileName);}
-    if(inFile.good()){
+    std::ofstream file;
+    file.open("log.txt",std::ios_base::app);
+    file << "case:" << name;
+    if(!inFile.is_open()) {inFile.open(fileName); file << "File Opened\n";}
+    if(inFile.good())
+    {   file << "It is good\n";
         std::string tmp_str;
-        if(!inFile.eof()) std::getline(inFile,tmp_str);;
+        if(!inFile.eof()) {std::getline(inFile,tmp_str); file << "First Check has: " << tmp_str << "\n";}
         while(!inFile.eof()){
             if(tmp_str == name){
                 inFile.close();
+                file << "match"; file.close();
                 return true;
             }
-            inFile >> tmp_str;inFile >> tmp_str;    //To skip symbol
+            std::getline(inFile,tmp_str);std::getline(inFile,tmp_str);    //To skip symbol
         }
+        file << "not match"; file.close();
         return false;
 
-    }else{//TODO remove this line before submission
+    }
+    else{//TODO remove this line before submission
+        file << "not good"; file.close();
        // std::cout << "Unable to find" + fileName + "\n";
         return false;
 
@@ -70,7 +80,7 @@ bool PlayerDao::isPresent(const std::string& name) {
 
 //int main(){
 //    PlayerDao playerDao;
-//    Player one("Raghuvaran",'p');
+//    Player one("Raghuvaran",'R');
 //
-//    std::cout << playerDao.createNewPlayer(one) << std::endl;
+//    std::cout << playerDao.getPlayer("Raghuvaran").getSymbol();;
 //}
