@@ -7,6 +7,20 @@ html {
     display: none;
 }
 
+#table{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    margin-left: -300px;
+    margin-top: -360px;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
 #table > .col-md-4{
     font-size: 100px;
     text-align: center;
@@ -18,6 +32,21 @@ html {
     border-width: 2px;
     border-color: #fff;
     will-change: border-color;
+}
+
+.active{
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    opacity: 1;
+}
+.inactive{
+    animation: fadeout 2s;
+    -moz-animation: fadeout 2s; /* Firefox */
+    -webkit-animation: fadeout 2s; /* Safari and Chrome */
+    -o-animation: fadeout 2s; /* Opera */
+    opacity: 0.3;
 }
 
 *,
@@ -95,10 +124,76 @@ body {
     }
 }
 
+@keyframes fadein {
+    from {
+        opacity:0.3;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0.3;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0.3;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0.3;
+    }
+}
+@-moz-keyframes fadeout { /* Firefox */
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0.3;
+    }
+}
+@-webkit-keyframes fadeout { /* Safari and Chrome */
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0.3;
+    }
+}
+@-o-keyframes fadeout { /* Opera */
+    from {
+        opacity:1;
+    }
+    to {
+        opacity: 0.3;
+    }
+}
+
 .scores {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 55%;
     width: 600px;
     margin-left: -300px;
     margin-top: 240px;
@@ -190,7 +285,7 @@ body {
 #playerSel1{
     position: absolute;
     left: 5%;
-    top: 50%;
+    top: 55%;
     width: 300px;
     margin-top: 240px;
 }
@@ -198,7 +293,7 @@ body {
 #playerSel2{
     position: absolute;
     right: 5%;
-    top: 50%;
+    top: 55%;
     width: 300px;
     margin-top: 240px;
 }
