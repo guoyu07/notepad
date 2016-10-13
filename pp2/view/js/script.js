@@ -26,7 +26,7 @@ var sel2 = document.getElementById('sel2');
 var btn1 = document.getElementById('btn1');
 var btn2 = document.getElementById('btn2');
 
-var are_players_set = true;
+var are_players_set = false;
 
 var cells = Array.from(document.getElementById('table').children);
 var playResponse = {};
@@ -166,12 +166,18 @@ function validatePlayers(){
 
     xhttp.onreadystatechange = function () {
         var inJson = JSON.parse(this.responseText);
-        if(inJson.winner == -2){
+        var players = inJson.players;
+        if(players[0].id > 0){
             document.getElementById('playerSel1').setAttribute('class','done');
-            player[1].name = inJson.player1_name;
-        }if(inJson.winner >= 0){
-            document.getElementById('playerSel1').setAttribute('class','done');
+            player[1].name = players[0].name;
+            player[1].marker= players[0].marker;
+        }if(players[1].id > 0){
             document.getElementById('playerSel2').setAttribute('class','done');
+            player[2].name = players[1].name;
+            player[2].marker= players[1].marker;
+        }
+        if(players[0].id >0 && players[1].id > 0){
+            are_players_set = true;
         }
     }
 
