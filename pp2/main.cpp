@@ -72,11 +72,16 @@ int main() {
             tttController.partParseJson(inJsonRequest,player_name);
             tttController.partParseJson(inJsonRequest,player_marker);
             tttController.createPlayer(player_name,player_marker,1);
-
+            tttController.partParseJson(inJsonRequest, player_name);
+            tttController.partParseJson(inJsonRequest, player_marker);
+            tttController.createPlayer(player_name, player_marker, 2);
             std::string players;
 
-
-
+            players += "{\"players\":[";
+            players += "{\"name\":\"" + tttController.player1.getName() + "\",\"marker\":\"" + tttController.player1.getSymbol() + "\",\"id\":"; players+= tttController.player1.getId() + "},";
+            players += "{\"name\":\"" + tttController.player2.getName() + "\",\"marker\":\"" + tttController.player2.getSymbol() + "\",\"id\":"; players+= tttController.player2.getId() + "}";
+            players += "]}";
+            std::cout << players;
             break;
         }
         default:
