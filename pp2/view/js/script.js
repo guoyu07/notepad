@@ -55,10 +55,11 @@ cells.forEach(function (cell) {
 //TODO check if other tmp_player is also set? then change @are_players_set to true
 //Event listeners for tmp_player dropdown fields
 sel1.addEventListener('change',function () {
-    updatePlayerByDD(this, 'p1_n', 'p1_m','playerSel1');
+    updatePlayerByDD(this, 1, 'p1_n', 'p1_m','playerSel1');
+
 });
 sel2.addEventListener('change',function () {
-    updatePlayerByDD(this, 'p2_n', 'p2_m','playerSel2');
+    updatePlayerByDD(this, 2, 'p2_n', 'p2_m','playerSel2');
 });
 
 //Event listeners for 'done' buttons
@@ -128,14 +129,15 @@ function getAllPlayers(){
 }
 
 //done
-function updatePlayerByDD(dd, p_name, p_marker,p_form){
+function updatePlayerByDD(dd, playerId, p_name, p_marker,p_form){
     if(dd.selectedIndex == 0) return;
     console.log(playerList[dd.selectedIndex]);
     tmp_player[playerId].name = playerList[dd.selectedIndex-1].name;
     tmp_player[playerId].marker = playerList[dd.selectedIndex-1].marker;
-    document.getElementById(p_name).innerHTML = playerList[dd.selectedIndex-1].name;
-    document.getElementById(p_marker).innerHTML = playerList[dd.selectedIndex-1].marker;
-    document.getElementById(p_form).setAttribute('class','done');
+    validatePlayers();
+    // document.getElementById(p_name).innerHTML = playerList[dd.selectedIndex-1].name;
+    // document.getElementById(p_marker).innerHTML = playerList[dd.selectedIndex-1].marker;
+    // document.getElementById(p_form).setAttribute('class','done');
 
 }
 
@@ -145,7 +147,7 @@ function updatePlayerByForm(playerId, name_field, marker_field,form_class){
     tmp_player[playerId].marker = document.getElementById(marker_field).value;
 
     if(tmp_player[playerId].name != "" && tmp_player[playerId].marker != "") {
-        document.getElementById(form_class).setAttribute('class','done');
+        validatePlayers();
     }else{
         alert('Name or marker can\'t be empty fields');
     }
@@ -169,10 +171,14 @@ function validatePlayers(){
         var players = inJson.players;
         if(players[0].id > 0){
             document.getElementById('playerSel1').setAttribute('class','done');
+            document.getElementById('p1_n').innerHTML = players[0].name;
+            document.getElementById('p1_m').innerHTML = players[0].marker;
             player[1].name = players[0].name;
             player[1].marker= players[0].marker;
         }if(players[1].id > 0){
             document.getElementById('playerSel2').setAttribute('class','done');
+            document.getElementById('p2_n').innerHTML = players[1].name;
+            document.getElementById('p2_m').innerHTML = players[1].marker;
             player[2].name = players[1].name;
             player[2].marker= players[1].marker;
         }
