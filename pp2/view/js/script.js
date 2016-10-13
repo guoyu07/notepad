@@ -128,7 +128,7 @@ function getAllPlayers(){
 }
 
 //done
-function updatePlayerByDD(dropdown, p_name, p_marker,p_form){
+function updatePlayerByDD(dd, p_name, p_marker,p_form){
     if(dd.selectedIndex == 0) return;
     console.log(playerList[dd.selectedIndex]);
     tmp_player[playerId].name = playerList[dd.selectedIndex-1].name;
