@@ -29,6 +29,7 @@ public:
     int determineWinner();                                  //required
     std::string getGameDisplay(bool isJson);                //required
     std::string getGameDisplay();                           //required
+    std::string getGameCursor();
     bool compare(const Player& , const Player&);
     void partParseJson(std::string& json, std::string& key);
     void partParseJson(std::string& json, int& key);

@@ -16,7 +16,6 @@ TTTController::~TTTController() {}
 void TTTController::createPlayer(std::string name, std::string marker, int playerNum=1)  {
     PlayerDao playerDao;
 
-
     switch (playerNum){
         case 1:
             if(playerDao.isPresent(name)){              //Does player_num exist?
@@ -191,6 +190,20 @@ std::string TTTController::getGameDisplay(bool isJson) {
     return cursorStr;
 }
 
+std::string TTTController::getGameCursor() {
+    std::array<Player,9> cursor = board.getCursor();
+
+    std::string cursorStr;
+
+    for(int i=0; i<9; i++){
+        if(cursor[i].getId() == player1.getId()) cursorStr.push_back('1');
+        else if(cursor[i].getId() == player2.getId()) cursorStr.push_back('1');
+        else cursorStr.push_back('0');
+    }
+
+    return cursorStr;
+}
+
 //done
 std::string TTTController::getGameDisplay() {
     std::array<Player,9> cursor = board.getCursor();
@@ -287,7 +300,7 @@ void TTTController::partParseJson(std::string &json, int &key) {
 //    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
 //    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
 //    std::cout << ttt.getGameDisplay(true);
-//    std::cout << ttt.getAllSavedPlayers();
+//    std::cout << ttt.getGameCursor();
 //
 //
 //}
