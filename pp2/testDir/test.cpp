@@ -92,27 +92,27 @@ int main(){
     cout << dummy1 << endl;cout << dummy2 << endl;cout << dummy3+1 << endl;
 
 
-//    int cursor = jsonStr.find(":");
+//    int boardCursor = jsonStr.find(":");
 //
-//    cursor+=2;
+//    boardCursor+=2;
 //
-//    name = jsonStr.substr(cursor,jsonStr.find("\"",cursor)-cursor);
+//    name = jsonStr.substr(boardCursor,jsonStr.find("\"",boardCursor)-boardCursor);
 //
-//    jsonStr = jsonStr.substr(cursor);
+//    jsonStr = jsonStr.substr(boardCursor);
 //
-//    cursor = jsonStr.find(":");
+//    boardCursor = jsonStr.find(":");
 //
-//    cursor+=2;
+//    boardCursor+=2;
 //
-//    marker = jsonStr.substr(cursor,jsonStr.find("\"",cursor)-cursor);
+//    marker = jsonStr.substr(boardCursor,jsonStr.find("\"",boardCursor)-boardCursor);
 //
-//    jsonStr = jsonStr.substr(cursor);
+//    jsonStr = jsonStr.substr(boardCursor);
 //
-//    cursor = jsonStr.find(":");
+//    boardCursor = jsonStr.find(":");
 //
-//    cursor+=1;
+//    boardCursor+=1;
 //
-//    playerNum = std::stoi(jsonStr.substr(cursor,jsonStr.find("}",cursor)-cursor));
+//    playerNum = std::stoi(jsonStr.substr(boardCursor,jsonStr.find("}",boardCursor)-boardCursor));
 //
 
 
