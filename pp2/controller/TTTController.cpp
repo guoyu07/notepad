@@ -182,7 +182,8 @@ std::string TTTController::getGameDisplay(bool isJson) {
 
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
-            cursorStr += "{\"row\":"; cursorStr += std::to_string(i) ; cursorStr+= ",\"col\":"; cursorStr+= std::to_string(j) + ",\"marker\":\""; cursorStr.push_back(board.getCursor()[3*i+j].getSymbol()); cursorStr += "\"},";
+            cursorStr += "{\"row\":"; cursorStr += std::to_string(i) ; cursorStr+= ",\"col\":"; cursorStr+= std::to_string(j) +
+                    ",\"marker\":\""; cursorStr.push_back(board.getCursor()[3*i+j].getSymbol()); cursorStr += "\"},";
         }
     }
     cursorStr.pop_back();
@@ -197,7 +198,7 @@ std::string TTTController::getGameCursor() {
 
     for(int i=0; i<9; i++){
         if(cursor[i].getId() == player1.getId()) cursorStr.push_back('1');
-        else if(cursor[i].getId() == player2.getId()) cursorStr.push_back('1');
+        else if(cursor[i].getId() == player2.getId()) cursorStr.push_back('2');
         else cursorStr.push_back('0');
     }
 
@@ -296,9 +297,9 @@ void TTTController::partParseJson(std::string &json, int &key) {
 //
 //
 //    ttt.board = Board(ttt.player1,ttt.player2);
-//    ttt.board.cursor[0] = ttt.player1;ttt.board.cursor[1] = ttt.player1;ttt.board.cursor[8] = ttt.player1;
-//    ttt.board.cursor[3] = ttt.player2;ttt.board.cursor[2] = ttt.player2;ttt.board.cursor[7] = ttt.player2;
-//    ttt.board.cursor[4] = ttt.player2;ttt.board.cursor[5] = ttt.player1;ttt.board.cursor[6] = ttt.player2;
+//    ttt.board.boardCursor[0] = ttt.player1;ttt.board.boardCursor[1] = ttt.player1;ttt.board.boardCursor[8] = ttt.player1;
+//    ttt.board.boardCursor[3] = ttt.player2;ttt.board.boardCursor[2] = ttt.player2;ttt.board.boardCursor[7] = ttt.player2;
+//    ttt.board.boardCursor[4] = ttt.player2;ttt.board.boardCursor[5] = ttt.player1;ttt.board.boardCursor[6] = ttt.player2;
 //    std::cout << ttt.getGameDisplay(true);
 //    std::cout << ttt.getGameCursor();
 //
