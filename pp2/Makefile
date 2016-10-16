@@ -1,10 +1,13 @@
 CXX	= g++
-CFLAGS	= -Wall 
+CFLAGS	= -Wall --std=c++11 
 CFLAG	= -g -Wall -Weffc++ -Wextra -pedantic
 LDFLAGS = -lm
 
-run:	main.o Board.o Player.o ttt_controller.o
-	${CXX} ${CFLAGS} -o ttt main.o Board.o Player.o ttt_controller.o
+run:	main.o Board.o Player.o TTTController.o PlayerDao.o
+	${CXX} ${CFLAGS} -o ttt main.o Board.o Player.o TTTController.o PlayerDao.o -o ttt.cgi
+
+test:	sampleTest.o Board.o Player.o TTTController.o PlayerDao.o
+	${CXX} ${CFLAGS} -o ttt sampleTest.o Board.o Player.o TTTController.o PlayerDao.o -o test.cgi
 
 main.o:	main.cpp
 	${CXX} ${CFLAGS} -c main.cpp
@@ -12,13 +15,19 @@ main.o:	main.cpp
 Player.o: ./model/Player.cpp
 	${CXX} ${CFLAGS} -c ./model/Player.cpp ./model/Player.h
 
+PlayerDao.o: ./model/PlayerDao.cpp
+	${CXX} ${CFLAGS} -c ./model/PlayerDao.cpp ./model/PlayerDao.h
+
 Board.o: ./model/Board.cpp 
 	${CXX} ${CFLAGS} -c ./model/Board.cpp ./model/Board.h
 
-ttt_controller.o: ./controller/ttt_controller.cpp
-	${CXX} ${CFLAGS} -c ./controller/ttt_controller.cpp ./controller/ttt_controller.h
+TTTController.o: ./controller/TTTController.cpp
+	${CXX} ${CFLAGS} -c ./controller/TTTController.cpp ./controller/TTTController.h
+
+sampleTest.o:	sampleTest.cpp
+	${CXX} ${CFLAGS} -c sampleTest.cpp
 
 clean:
 	rm -rf *.o
 	rm -rf *~
-	rm -rf run ttt 
+	rm -rf run ttt.cgi test.cgi
