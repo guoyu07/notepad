@@ -9,6 +9,10 @@ var tmp_player = {
     1:{}, 2:{}
 
 };
+
+var color1 = getRandomColor();
+var color2 = getRandomColor();
+
 var player = {
     1:{
 
@@ -91,8 +95,8 @@ function togglePlayer(){
 function display(id,mark,curr_player){
 var cell = document.getElementById(id);
     cell.innerHTML = mark;
-    if(curr_player == 1) cell.setAttribute('style','color:red');
-    else cell.setAttribute('style','color:blue');
+    if(curr_player == 1) cell.setAttribute('style','color:'+color1);
+    else cell.setAttribute('style','color:'+color2);
     playResponse= {
         "player": curr_player,
         "position": id
@@ -185,6 +189,7 @@ function validatePlayers(){
                 document.getElementById('playerSel1').setAttribute('class', 'done');
                 document.getElementById('p1_n').innerHTML = players[0].name;
                 document.getElementById('p1_m').innerHTML = players[0].marker;
+                document.getElementById('p1_m').setAttribute('style','color:'+color1);
                 player[1].name = players[0].name;
                 player[1].marker = players[0].marker;
             }
@@ -192,6 +197,7 @@ function validatePlayers(){
                 document.getElementById('playerSel2').setAttribute('class', 'done');
                 document.getElementById('p2_n').innerHTML = players[1].name;
                 document.getElementById('p2_m').innerHTML = players[1].marker;
+                document.getElementById('p2_m').setAttribute('style','color:'+color2);
                 player[2].name = players[1].name;
                 player[2].marker = players[1].marker;
             }
@@ -263,9 +269,18 @@ function declareWinner(winner) {
     var result = document.getElementById('winner');
     var resultDiv = document.getElementById('result');
     switch(winner){
-        case 1: result.innerHTML = player[1].name; break;
-        case 2: result.innerHTML = player[2].name; break;
+        case 1: result.innerHTML = player[1].name; result.setAttribute('style','color:'+color1); break;
+        case 2: result.innerHTML = player[2].name; result.setAttribute('style','color:'+color2);break;
         case 3: result.innerHTML = 'Tie'; break;
     }
     resultDiv.className = "";
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
