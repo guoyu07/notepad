@@ -8,8 +8,8 @@
       <link rel="shortcut icon" type="image/png" href="https://people.cs.clemson.edu/~rchowda/images/android-desktop.png"/>
 
       <title>Tic-Tac-Toe Game</title>
-      <!-- Bootstrap -->
-      <link href="css/bootstrap.css" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link href="css/style.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,13 +31,15 @@
       <div id ="8" class="col-md-4">&nbsp;</div>
       <div id ="9" class="col-md-4">&nbsp;</div>
   </div>
-  <div class="form-group col-md-4" id="playerSel1">
+  <div class="form-group col-md-4 col-sm-6 col-xs-12" id="playerSel1">
       <label for="sel1">Select Player 1:</label>
       <select class="form-control" id="sel1">
           <option>--Select--</option>
           <!--Player info goes here-->
       </select>
-
+      <br>
+        <label>Not a returning player? Create your profile here</label>
+      <br>
       <label for="usr1">Name:</label>
       <input type="text" class="form-control" id="usr1">
       <label for="mrkr1">Marker:</label>
@@ -46,12 +48,15 @@
       <button type="button" class="btn btn-default" id="btn1">Done</button>
   </div>
 
-  <div class="form-group col-md-4" id="playerSel2">
+  <div class="form-group col-md-4 col-sm-6 col-xs-12" id="playerSel2">
           <label for="sel2">Select Player 2:</label>
           <select class="form-control" id="sel2">
               <option>--Select--</option>
               <!--Player info goes here-->
           </select>
+      <br>
+      <label>Not a returning player? Create your profile here</label>
+      <br>
       <label for="usr2">Name:</label>
       <input type="text" class="form-control" id="usr2">
       <label for="mrkr2">Marker:</label>
@@ -59,16 +64,12 @@
       <h6><b>NOTE:</b> Existing marker is preferred over the new if 'Name' already exists</h6>
           <button type="button" class="btn btn-default" id="btn2">Done</button>
   </div>
-<div id="leaderBoard col-md-4" class="scores p1">
+<div id="leaderBoard col-md-4 col-sm-12 col-xs-12" class="scores p1">
 <p class="player1"><span id="p1_n" class="p1">Player 1</span><span class="p2">Player 1</span> <span id="p1_m" class="score">x</span></p>
 <p class="player2"><span id="p2_n" class="p1">Player 2</span><span class="p2">Player 2</span> <span id="p2_m" class="score">o</span></p>
 <div class="result done" id="result"><p>Result<span id="winner" class="score">&nbsp;Player1</span></p></div>
 </div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	<!-- <script src="js/jquery-1.11.3.min.js"></script>-->
 
-	<!-- Include all compiled plugins (below), or include individual files as needed --> 
-	<!--<script src="js/bootstrap.js"></script>-->
     <script src="js/script.js"></script>
   </body>
 </html>
