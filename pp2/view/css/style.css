@@ -28,7 +28,6 @@ html {
     float: left;
     width: 33.333333333%;
     height: 33.333333333%;
-    cursor: pointer;
     border-width: 2px;
     border-color: #fff;
     will-change: border-color;
