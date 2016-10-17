@@ -14,7 +14,7 @@ html {
     width: 600px;
     height: 600px;
     margin-left: -300px;
-    margin-top: -360px;
+    margin-top: -250px;
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
@@ -40,6 +40,7 @@ html {
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
     opacity: 1;
+    cursor:pointer;
 }
 .inactive{
     animation: fadeout 2s;
@@ -47,6 +48,7 @@ html {
     -webkit-animation: fadeout 2s; /* Safari and Chrome */
     -o-animation: fadeout 2s; /* Opera */
     opacity: 0.3;
+    cursor:not-allowed;
 }
 
 *,
@@ -196,7 +198,7 @@ body {
     top: 55%;
     width: 600px;
     margin-left: -300px;
-    margin-top: 240px;
+    margin-top: 360px;
     text-align: center;
     cursor: pointer;
     -webkit-user-select: none;
@@ -287,7 +289,7 @@ body {
     left: 5%;
     top: 55%;
     width: 300px;
-    margin-top: 240px;
+    margin-top: 360px;
 }
 
 #playerSel2{
@@ -295,6 +297,6 @@ body {
     right: 5%;
     top: 55%;
     width: 300px;
-    margin-top: 240px;
+    margin-top: 360px;
 }
 
