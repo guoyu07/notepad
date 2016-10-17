@@ -101,7 +101,7 @@ var cell = document.getElementById(id);
         "player": curr_player,
         "position": id
     };
-    console.log(JSON.stringify(playResponse));
+
 }
 
 //done
@@ -141,7 +141,7 @@ function getAllPlayers(){
 //done
 function updatePlayerByDD(dd, playerId, p_name, p_marker,p_form){
     if(dd.selectedIndex == 0) return;
-  //  console.log(playerList[dd.selectedIndex-1]);
+
     tmp_player[playerId].name = playerList[dd.selectedIndex-1].name;
     tmp_player[playerId].marker = playerList[dd.selectedIndex-1].marker;
     validatePlayers();
@@ -223,13 +223,13 @@ function informPlaying(id) {
     shootJson.player2_name = player[2].name;
     shootJson.player2_marker = player[2].marker;
     shootJson.cursor = boardCursor;
-    console.log(JSON.stringify(shootJson));
+
 
     xhttp2.send(JSON.stringify(shootJson));
 
     xhttp2.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+
             var inJson = JSON.parse(this.responseText);
 
             boardCursor = inJson.cursor;
@@ -260,7 +260,7 @@ function displayBoard() {
 
         }else console.log('error in displayBoard:'+boardCursor[i]);
 
-    }        console.log('displayBoard: '+boardCursor);
+    }
 
 }
 
@@ -274,6 +274,7 @@ function declareWinner(winner) {
         case 3: result.innerHTML = 'Tie'; break;
     }
     resultDiv.className = "";
+    location.href='#result';
 }
 
 function getRandomColor() {
