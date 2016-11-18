@@ -17,6 +17,24 @@ protected:
 public:
     User(int userId, const std::string &userName, const std::string &lastLogin);
     virtual std::string getUserType();
+
+    virtual void loginFailed();
+
+    virtual void clearFailedLogins();
+
+    virtual bool isLocked();
+
+    virtual int getMaxFailuresAllowed() const;
+
+    virtual void setMaxFailuresAllowed(int);
+
+    virtual int getMaxChildUsers() const;
+
+    virtual void setMaxChildUsers(int);
+
+    virtual bool childBorn();
+
+    virtual bool childDied();
 };
 
 

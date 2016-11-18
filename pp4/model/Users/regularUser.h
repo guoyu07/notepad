@@ -12,10 +12,22 @@ class regularUser : public User {
 protected:
     std::string type = "regular";
     User createdBy;
+    int failedLogins, maxFailuresAllowed;
 public:
-    regularUser(int userId, const std::string &userName, const User &createdBy);
+    regularUser(int userId, const std::string &userName, const std::string &lastLogin, const User &createdBy);
 
     virtual std::string getUserType() override;
+
+    virtual void loginFailed();
+
+    virtual void clearFailedLogins() override;
+
+    virtual bool isLocked() override;
+
+    virtual int getMaxFailuresAllowed() const;
+
+    virtual void setMaxFailuresAllowed(int maxFailuresAllowed);
+
 };
 
 

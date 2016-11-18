@@ -12,6 +12,22 @@ std::string User::getUserType() {
     return std::string("No type");
 }
 
+void User::loginFailed() {
+
+}
+
+bool User::isLocked() {
+    return false;
+}
+
+int User::getMaxFailuresAllowed() const {
+    return 99999;
+}
+
+void User::setMaxFailuresAllowed(int maxFailuresAllowed) {
+
+}
+
 std::string User::getTimeStamp() {
     time_t rawtime;
     struct tm * timeinfo;
@@ -24,4 +40,24 @@ std::string User::getTimeStamp() {
     std::string str(buffer);
 
     return str;
+}
+
+void User::clearFailedLogins() {
+
+}
+
+int User::getMaxChildUsers() const {
+    return 0;
+}
+
+void User::setMaxChildUsers(int) {
+
+}
+
+bool User::childBorn() {
+    return false;
+}
+
+bool User::childDied() {
+    return false;
 }
