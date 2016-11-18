@@ -1,1 +1,4 @@
-pp4/.idea/
+pp4/.idea/*
+pp2/filePlayers.txt
+pp2/log.txt
+pp2/testcase.txt
