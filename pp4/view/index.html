@@ -49,13 +49,13 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Panel heading</div>
   <div class="panel-body">
-    <button type="button" class="btn btn-primary">New Note</button>
+    <button type="button" class="btn btn-primary" id="createNote" onclick="displayNoteModal(-1)">New Note</button>
   </div>
 
   <!-- List group -->
-  <div class="list-group">
+  <div class="list-group" id="notesContainer">
     <a href ="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">Cras justo odio</a>
-    <a href ="#"  class="list-group-item list-group-item-action" onClick="updateNote(2);">Dapibus ac facilisis in</a>
+    <a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal(2);">Dapibus ac facilisis in</a>
     <a class="list-group-item list-group-item-action">Morbi leo risus</a>
     <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
     <a class="list-group-item list-group-item-action">Vestibulum at eros</a>
@@ -80,9 +80,9 @@
 </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" style="float:left"> <span class="glyphicon lyphicon glyphicon-trash" aria-hidden="true"> </span> Delete</button>
+                    <button type="button" class="btn btn-danger" id="deleteNote" style="float:left"> <span class="glyphicon lyphicon glyphicon-trash" aria-hidden="true"> </span> Delete</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="updateNote">Save changes</button>
                   </div>
                 </div>
               </div>
