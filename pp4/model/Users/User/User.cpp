@@ -5,7 +5,7 @@
 #include <ctime>
 #include "User.h"
 
-User::User(int userId, const std::string &userName, const std::string &lastLogin) : userId(userId), userName(userName), lastLogin(lastLogin){
+User::User(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin) : userId(userId), userName(userName), password(password), lastLogin(lastLogin){
 }
 
 std::string User::getUserType() {
@@ -60,4 +60,44 @@ bool User::childBorn() {
 
 bool User::childDied() {
     return false;
+}
+
+User::User() {
+    userId = -99;
+    userName = "dummy";
+    password = "dummy";
+    lastLogin = "never";
+
+}
+
+int User::getUserId() const {
+    return userId;
+}
+
+void User::setUserId(int userId) {
+    User::userId = userId;
+}
+
+const std::string &User::getUserName() const {
+    return userName;
+}
+
+void User::setUserName(const std::string &userName) {
+    User::userName = userName;
+}
+
+const std::string &User::getPassword() const {
+    return password;
+}
+
+void User::setPassword(const std::string &password) {
+    User::password = password;
+}
+
+const std::string &User::getLastLogin() const {
+    return lastLogin;
+}
+
+void User::setLastLogin(const std::string &lastLogin) {
+    User::lastLogin = lastLogin;
 }

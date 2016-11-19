@@ -4,7 +4,7 @@
 
 #include "adminUser.h"
 
-adminUser::adminUser(int userId, const std::string &userName, const std::string &lastLogin) : User(userId, userName, lastLogin) {}
+adminUser::adminUser(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin) : User(userId, userName, password, lastLogin) {}
 
 std::string adminUser::getUserType() {
     return adminUser::type;

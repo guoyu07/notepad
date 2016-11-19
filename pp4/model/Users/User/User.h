@@ -11,12 +11,29 @@
 class User {
 protected:
     int userId;
-    std::string userName, lastLogin;
+    std::string userName, password, lastLogin;
 
     std::string getTimeStamp();
 public:
-    User(int userId, const std::string &userName, const std::string &lastLogin);
+    User();
+    User(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin);
     virtual std::string getUserType();
+
+    int getUserId() const;
+
+    void setUserId(int userId);
+
+    const std::string &getUserName() const;
+
+    void setUserName(const std::string &userName);
+
+    const std::string &getPassword() const;
+
+    void setPassword(const std::string &password);
+
+    const std::string &getLastLogin() const;
+
+    void setLastLogin(const std::string &lastLogin);
 
     virtual void loginFailed();
 

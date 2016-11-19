@@ -11,10 +11,10 @@
 class regularUser : public User {
 protected:
     std::string type = "regular";
-    User createdBy;
+    User parent;
     int failedLogins, maxFailuresAllowed;
 public:
-    regularUser(int userId, const std::string &userName, const std::string &lastLogin, const User &createdBy);
+    regularUser(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin, const User &parent);
 
     virtual std::string getUserType() override;
 
