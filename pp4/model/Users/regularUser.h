@@ -11,10 +11,10 @@
 class regularUser : public User {
 protected:
     std::string type = "regular";
-    User parent;
+    User *parent;
     int failedLogins, maxFailuresAllowed;
 public:
-    regularUser(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin, const User &parent);
+    regularUser(const std::string &userName, const std::string &password, const std::string &lastLogin, User* parent);
 
     virtual std::string getUserType() override;
 
@@ -27,6 +27,10 @@ public:
     virtual int getMaxFailuresAllowed() const;
 
     virtual void setMaxFailuresAllowed(int maxFailuresAllowed);
+
+    virtual const User *getParent() const;
+
+    void setParent(User *parent);
 
 };
 

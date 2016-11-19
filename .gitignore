@@ -2,3 +2,10 @@ pp4/.idea/*
 pp2/filePlayers.txt
 pp2/log.txt
 pp2/testcase.txt
+pp4/model/Dao.h.gch
+pp4/model/Notes/Notes.h.gch
+pp4/model/Users/User/User.h.gch
+pp4/model/Users/adminUser.h.gch
+pp4/model/Users/regularUser.h.gch
+pp4/model/a.out
+pp4/model/users_db.txt

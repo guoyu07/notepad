@@ -8,7 +8,7 @@ std::string regularUser::getUserType() {
     return regularUser::type;
 }
 
-regularUser::regularUser(int userId, const std::string &userName, const std::string &password,const std::string &lastLogin, const User &parent) : User(userId, userName, password, lastLogin),
+regularUser::regularUser(const std::string &userName, const std::string &password,const std::string &lastLogin, User* parent) : User(userName, password, lastLogin),
                                                                                            parent(parent) {}
 
 int regularUser::getMaxFailuresAllowed() const {
@@ -29,4 +29,13 @@ bool regularUser::isLocked() {
 
 void regularUser::clearFailedLogins() {
     regularUser::failedLogins = 0;
+}
+
+const User *regularUser::getParent() const {
+    return parent;
+}
+
+void regularUser::setParent(User *parent) {
+    delete regularUser::parent;
+    regularUser::parent = parent;
 }

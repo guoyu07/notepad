@@ -12,22 +12,22 @@
 #include "Users/User/User.h"
 
 class Dao {
-    std::string users_db = "users_db.txt", notes = "note_db.txt";
+    std::string users_db = "users_db.txt", notes_db = "note_db.txt";
     bool isLocked;
     std::ofstream outFile;
     std::ifstream inFile;
 
-
 public:
 
     int getNewUserId();
+
     bool canTrust(std::string userName, std::string password);
 
     rapidjson::Document getUserDetails(std::string userName);
 
-    User getUser(std::string userName);
+    User* getUser(std::string userName);
 
-    void createUser (std::string userName, std::string password,std::string lastLogin, std::string createdByAdminUserName, bool isRegular);
+    bool createUser (std::string userName, std::string password,std::string lastLogin, std::string createdByAdminUserName, bool isRegular);
 
     void updateUser(rapidjson::Document updatedUser);
 
@@ -47,7 +47,6 @@ public:
 
     void deleteNote(rapidjson::Document note);
 
-    
 };
 
 

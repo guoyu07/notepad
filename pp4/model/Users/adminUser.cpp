@@ -4,7 +4,7 @@
 
 #include "adminUser.h"
 
-adminUser::adminUser(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin) : User(userId, userName, password, lastLogin) {}
+adminUser::adminUser(const std::string &userName, const std::string &password, const std::string &lastLogin) : User(userName, password, lastLogin) {}
 
 std::string adminUser::getUserType() {
     return adminUser::type;
@@ -26,4 +26,8 @@ bool adminUser::childBorn() {
 bool adminUser::childDied() {
     adminUser::currentChildUsers--;
     return currentChildUsers >= 0;
+}
+
+const User *adminUser::getParent() const {
+    return this;
 }

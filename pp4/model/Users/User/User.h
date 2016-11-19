@@ -10,18 +10,13 @@
 
 class User {
 protected:
-    int userId;
     std::string userName, password, lastLogin;
 
     std::string getTimeStamp();
 public:
     User();
-    User(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin);
+    User(const std::string &userName, const std::string &password, const std::string &lastLogin);
     virtual std::string getUserType();
-
-    int getUserId() const;
-
-    void setUserId(int userId);
 
     const std::string &getUserName() const;
 
@@ -52,6 +47,8 @@ public:
     virtual bool childBorn();
 
     virtual bool childDied();
+
+    virtual const User *getParent() const;
 };
 
 

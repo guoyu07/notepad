@@ -13,7 +13,7 @@ protected:
     std::string type = "admin";
     int maxChildUsers, currentChildUsers;
 public:
-    adminUser(int userId, const std::string &userName, const std::string &password, const std::string &lastLogin);
+    adminUser(const std::string &userName, const std::string &password, const std::string &lastLogin);
 
     virtual std::string getUserType() override;
 
@@ -25,6 +25,7 @@ public:
 
     virtual bool childDied() override;
 
+    virtual const User *getParent() const;
 
 };
 
