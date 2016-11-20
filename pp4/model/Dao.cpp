@@ -145,7 +145,7 @@ std::string Dao::getNotesList(std::string userName) {
 
         while (std::getline(inFile,tmp_str)) {
             tmp_char = &tmp_str[0]; json.Parse(tmp_char);
-            if(json["owner"].GetString() == userName){
+            if(json["userName"].GetString() == userName){
                 note.SetObject(); note.RemoveAllMembers();
                 index.SetString(std::to_string(count).c_str(),std::to_string(count++).length(),allocator);
 
@@ -180,13 +180,13 @@ void Dao::createNote(rapidjson::Document &note) {
     rapidjson::Document json; json.SetObject(); rapidjson::Document::AllocatorType& allocator = json.GetAllocator();
     rapidjson::Value tmp_val;
 
-    if(note.HasMember("noteTitle") && note.HasMember("noteBody") && note.HasMember("owner") &&
-            note["noteTitle"].IsString() && note["noteBody"].IsString() && note["owner"].IsString() &&
-            note["noteTitle"].GetString() != "" && note["noteBody"].GetString() != "" && note["owner"].GetString() != ""){
+    if(note.HasMember("noteTitle") && note.HasMember("noteBody") && note.HasMember("userName") &&
+            note["noteTitle"].IsString() && note["noteBody"].IsString() && note["userName"].IsString() &&
+            note["noteTitle"].GetString() != "" && note["noteBody"].GetString() != "" && note["userName"].GetString() != ""){
         tmp_val.SetInt(getNewNoteId()); json.AddMember("noteId",tmp_val,allocator);
         tmp_val = note["noteTitle"];    json.AddMember("noteTitle",tmp_val,allocator);
         tmp_val = note["noteBody"];     json.AddMember("noteBody",tmp_val,allocator);
-        tmp_val = note["owner"];        json.AddMember("owner",tmp_val,allocator);
+        tmp_val = note["userName"];        json.AddMember("userName",tmp_val,allocator);
 
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
@@ -207,7 +207,7 @@ bool Dao::updateNote(rapidjson::Document &note, bool shouldDelete) {
     outFile.open(tempFile, std::ios_base::out);
     if(!inFile.is_open()) { inFile.open(notes_db, std::ios_base::in);}
     if(inFile.good()) {
-        std::string tmp_str, owner = note["owner"].GetString();
+        std::string tmp_str, userName = note["userName"].GetString();
         char *tmp_char;
 
 
@@ -220,7 +220,7 @@ bool Dao::updateNote(rapidjson::Document &note, bool shouldDelete) {
         while (std::getline(inFile,tmp_str)) {
             tmp_char = &tmp_str[0]; json.Parse(tmp_char);
             if(json["noteId"].GetInt() == note["noteId"].GetInt() &&
-                    json["owner"].GetString() == owner) {
+                    json["userName"].GetString() == userName) {
 
                 if(shouldDelete){ didSkip = true; continue;}  // Deletes
                 rapidjson::Value &title = json["noteTitle"];
@@ -294,7 +294,7 @@ int Dao::getNewNoteId(){
 //    std::string
 //        title = "Hi how are you doing?",
 //        body  = "He picks up the line by numbytes in fseek, but the data line may vary and numbytes not be accurate, how can I fix this?",
-//        owner = "Raghuvaran";
+//        userName = "Raghuvaran";
 //
 //    rapidjson::Value tmp_val;
 //    tmp_val.SetInt(-1);
@@ -303,8 +303,8 @@ int Dao::getNewNoteId(){
 //    note.AddMember("noteTitle",tmp_val,allocator);
 //    tmp_val.SetString(&body[0],body.length(),allocator);
 //    note.AddMember("noteBody",tmp_val,allocator);
-//    tmp_val.SetString(&owner[0],owner.length(),allocator);
-//    note.AddMember("owner",tmp_val,allocator);
+//    tmp_val.SetString(&userName[0],userName.length(),allocator);
+//    note.AddMember("userName",tmp_val,allocator);
 //
 //
 //    std::cout << dao.getNotesList("Raghuv") <<std::endl;

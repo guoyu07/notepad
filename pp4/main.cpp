@@ -19,8 +19,6 @@ int main() {
 
     Manager manager;
 
-    std::cout << inJson.GetParseError() <<std::endl;
-std::cout << inJson["identifier"].GetString() <<std::endl;
     switch (inJson["identifier"].GetString()[0]){
         case 'a':
             tmp_val.SetBool(manager.authenticate(inJsonRequest));

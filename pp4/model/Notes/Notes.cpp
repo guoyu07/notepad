@@ -4,4 +4,4 @@
 
 #include "Notes.h"
 
-Notes::Notes(int noteId, const std::string &title, const std::string &body, User *owner) : noteId(noteId), title(title), body(body), owner(owner) {}
+Notes::Notes(int noteId, const std::string &title, const std::string &body, User *userName) : noteId(noteId), title(title), body(body), userName(userName) {}

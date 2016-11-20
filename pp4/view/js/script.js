@@ -1,5 +1,6 @@
 var cgiPath = "cgi-bin/notes.cgi";
 var create=0, get=1, put=2, del=3;
+var userName;
 var notes = {
   0:{
       "noteId" : -1,
@@ -38,7 +39,7 @@ function authenticate(userName, password){
     var xhttp = new XMLHttpRequest();
     var outJson = {};
     outJson.identifier = "a";
-    outJson.userName = userName;
+    outJson.userName = escapeSpaces(userName);
     outJson.password = password;
 
     xhttp.open("POST", cgiPath, true);
@@ -63,7 +64,7 @@ function authenticate(userName, password){
 //check cookie
 
 //******//Assume user is authenticated
-var userName;
+
 /*
 * Get all notes list (titles)
 * should have note Id, title, body, last modified, etc.
@@ -72,13 +73,14 @@ function getNotes() {
     var xhttp = new XMLHttpRequest();
     var outJson = {};
     outJson.identifier = "g";
-    outJson.userName = userName;
+    outJson.userName = getCookie("uid");
 
     xhttp.open("POST", cgiPath, true);
     xhttp.send(JSON.stringify(outJson));
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){
+            console.log(this.responseText);
             var inJson = JSON.parse(this.responseText);
             notes = inJson.notes;
             updateNotesDisplay();
@@ -99,9 +101,10 @@ function updateNotesDisplay() {
 }
 
 function displayNoteModal(noteIndex){
-
-    $("#noteTitle").val(notes[noteIndex].noteTitle);
-    $("#noteBody").val(notes[noteIndex].noteBody);
+    if(noteIndex >= 0) {
+        $("#noteTitle").val(notes[noteIndex].noteTitle);
+        $("#noteBody").val(notes[noteIndex].noteBody);
+    }
 
     var createHandler = function () {
         updateNote(noteIndex,create);
@@ -156,17 +159,19 @@ function updateNote(noteIndex, mode){
         case put:    outJson.identifier = "p"; break;
         case del:    outJson.identifier = "d"; break;
     }
-    outJson.userName   = userName;
+    outJson.userName   = getCookie("uid");
     outJson.noteId     = noteIndex;
-    outJson.noteTitle  = nTitle;
-    outJson.noteBody   = nBody;
+    outJson.noteTitle  = escapeSpaces(nTitle);
+    outJson.noteBody   = escapeSpaces(nBody);
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", cgiPath, true);
     xhttp.send(JSON.stringify(outJson));
+    console.log("update Note:",JSON.stringify(outJson));
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
             var inJson = JSON.parse(this.responseText);
             if(Boolean(inJson.success))
                 console.log("update successful");
@@ -197,9 +202,10 @@ function updateNote(noteIndex, mode){
 
 //On logout
 /**remove cookie**/
-setCookie("uid",userName,-1);
-checkCookie();
-
+function logout() {
+    setCookie("uid", getCookie("uid"), -1);
+    checkCookie();
+}
 
 
 
@@ -282,16 +288,24 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-    var user = getCookie("username");
+    var user = getCookie("uid");
     if (user != "") {
        // user = prompt("Please enter your name:", "");
         alert("Welcome again " + user);
-        window.location = '/';
+
     } else {
-        window.location = 'login.html';
+            window.location = '/login/';
+
         // if (user != "" && user != null) {
         //     setCookie("username", user, 1);
         // }
     }
 }
 
+
+//*****************Other functions*****************//
+
+function escapeSpaces(str) {
+    return str.replace(/ /g,'\\u0020');
+
+}

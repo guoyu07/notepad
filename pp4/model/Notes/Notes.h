@@ -13,9 +13,9 @@ class Notes {
 protected:
     int noteId;
     std::string title, body, lastModified;
-    User *owner;
+    User *userName;
 public:
-    Notes(int noteId, const std::string &title, const std::string &body, User *owner);
+    Notes(int noteId, const std::string &title, const std::string &body, User *userName);
 };
 
 
