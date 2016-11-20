@@ -90,8 +90,8 @@ bool Dao::createUser(std::string userName, std::string password,std::string last
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
 
     json.Accept(writer);
-    std::cout << buffer.GetString() << '\n';
-    if(!outFile.is_open()){outFile.open(users_db,std::ios_base::app); printf("Opened file \n");}
+
+    if(!outFile.is_open()){outFile.open(users_db,std::ios_base::app);}
     outFile << buffer.GetString() << std::endl;
     outFile.close();
 
@@ -99,11 +99,11 @@ bool Dao::createUser(std::string userName, std::string password,std::string last
 
 }
 
-void Dao::updateUser(rapidjson::Document updatedUser) {
+void Dao::updateUser(rapidjson::Document &updatedUser) {
 
 }
 
-void Dao::deleteUser(rapidjson::Document deleteUser) {
+void Dao::deleteUser(rapidjson::Document &deleteUser) {
 
 }
 //done
@@ -130,20 +130,21 @@ bool Dao::doesUserExists(std::string userName) {
 }
 
 //haven't tested!
-rapidjson::Document Dao::getNotesList(std::string userName) {
-    if(!inFile.is_open()) { inFile.open(users_db);}
+std::string Dao::getNotesList(std::string userName) {
+    if(!inFile.is_open()) { inFile.open(notes_db);}
     if(inFile.good()) {
         std::string tmp_str;
         char *tmp_char;
 
-        rapidjson::Document json, outJson,; outJson.SetObject(); rapidjson::Document::AllocatorType& allocator = outJson.GetAllocator();
+        rapidjson::Document json, outJson; outJson.SetObject(); rapidjson::Document::AllocatorType& allocator = outJson.GetAllocator();
         rapidjson::Value index, tmp_val, note; note.SetObject();
 
         int count = 0;
 
-        if (!inFile.eof()) { std::getline(inFile, tmp_str); tmp_char = &tmp_str[0]; json.Parse(tmp_char); }
+//        if (!inFile.eof()) { std::getline(inFile, tmp_str); tmp_char = &tmp_str[0]; json.Parse(tmp_char); }
 
-        while (!inFile.eof()) {
+        while (std::getline(inFile,tmp_str)) {
+            tmp_char = &tmp_str[0]; json.Parse(tmp_char);
             if(json["owner"].GetString() == userName){
                 note.SetObject(); note.RemoveAllMembers();
                 index.SetString(std::to_string(count).c_str(),std::to_string(count++).length(),allocator);
@@ -157,36 +158,110 @@ rapidjson::Document Dao::getNotesList(std::string userName) {
 
             }
         }
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
 
-        return outJson;
+        outJson.Accept(writer);
+
+        return buffer.GetString();
     }
-    return rapidjson::Document();
+    return NULL;
 }
 
 rapidjson::Document Dao::getNotesList(int userId) {
     return rapidjson::Document();
 }
 
-rapidjson::Document Dao::getNote(int NoteId) {
+rapidjson::Document Dao::getNote(int noteId) {
     return rapidjson::Document();
 }
 
-void Dao::createNote(rapidjson::Document note) {
+void Dao::createNote(rapidjson::Document &note) {
+    rapidjson::Document json; json.SetObject(); rapidjson::Document::AllocatorType& allocator = json.GetAllocator();
+    rapidjson::Value tmp_val;
+
+    if(note.HasMember("noteTitle") && note.HasMember("noteBody") && note.HasMember("owner") &&
+            note["noteTitle"].IsString() && note["noteBody"].IsString() && note["owner"].IsString() &&
+            note["noteTitle"].GetString() != "" && note["noteBody"].GetString() != "" && note["owner"].GetString() != ""){
+        tmp_val.SetInt(getNewNoteId()); json.AddMember("noteId",tmp_val,allocator);
+        tmp_val = note["noteTitle"];    json.AddMember("noteTitle",tmp_val,allocator);
+        tmp_val = note["noteBody"];     json.AddMember("noteBody",tmp_val,allocator);
+        tmp_val = note["owner"];        json.AddMember("owner",tmp_val,allocator);
+
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+        json.Accept(writer);
+
+        if(!outFile.is_open()){outFile.open(notes_db,std::ios_base::app);}
+        outFile << buffer.GetString() << std::endl;
+        outFile.close();
+    }
 
 }
 
-void Dao::updateNote(rapidjson::Document note) {
+bool Dao::updateNote(rapidjson::Document &note, bool shouldDelete) {
+    std::string tempFile = "tmp_notes_db.txt";
+    bool didSkip = false;
+
+    outFile.open(tempFile, std::ios_base::out);
+    if(!inFile.is_open()) { inFile.open(notes_db, std::ios_base::in);}
+    if(inFile.good()) {
+        std::string tmp_str, owner = note["owner"].GetString();
+        char *tmp_char;
+
+
+        rapidjson::Document json, outJson; outJson.SetObject(); rapidjson::Document::AllocatorType& allocator = outJson.GetAllocator();
+        rapidjson::StringBuffer buffer;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+//        if (!inFile.eof()) { std::getline(inFile, tmp_str); tmp_char = &tmp_str[0]; json.Parse(tmp_char); }
+
+        while (std::getline(inFile,tmp_str)) {
+            tmp_char = &tmp_str[0]; json.Parse(tmp_char);
+            if(json["noteId"].GetInt() == note["noteId"].GetInt() &&
+                    json["owner"].GetString() == owner) {
+
+                if(shouldDelete){ didSkip = true; continue;}  // Deletes
+                rapidjson::Value &title = json["noteTitle"];
+                title = note["noteTitle"];
+                rapidjson::Value &body = json["noteBody"];
+                body = note["noteBody"];
+
+
+                json.Accept(writer);
+                outFile << buffer.GetString() << std::endl;
+                while (std::getline(inFile, tmp_str)) outFile << tmp_str << std::endl;
+
+                inFile.close();
+                outFile.close();
+                std::rename(tempFile.c_str(), notes_db.c_str());
+                // assert(!success);
+                return true;
+            }
+            outFile << tmp_str << std::endl;
+
+        }
+    }
+    inFile.close();
+    outFile.close();
+    if(shouldDelete)
+        std::rename(tempFile.c_str(), notes_db.c_str());
+    else
+        std::remove(tempFile.c_str());
+    return didSkip;
 
 }
 
-void Dao::deleteNote(rapidjson::Document note) {
+void Dao::deleteNote(rapidjson::Document &note) {
+    updateNote(note,true);
 
 }
 //done - maybe
-int Dao::getNewUserId(){
+int Dao::getNewNoteId(){
     int id =-1;
 
-    if(!inFile.is_open()) { inFile.open(users_db);}
+    if(!inFile.is_open()) { inFile.open(notes_db);}
     if(inFile.good()){
         std::string tmp_str;
         char* tmp_char;
@@ -197,25 +272,43 @@ int Dao::getNewUserId(){
             std::getline(inFile,tmp_str);tmp_char = &tmp_str[0]; json.Parse(tmp_char);
         }
 
-        if(json.IsObject() && json.HasMember("userId") && json["userId"].IsInt()){
-            id = json["userId"].GetInt();
+        if(json.IsObject() && json.HasMember("noteId") && json["noteId"].IsInt()){
+            id = json["noteId"].GetInt();
         }
     }
     inFile.close();
     return ++id;
 }
 
-int main(){
-    Dao dao;
-
-//    dao.createUser("Raghu","asdfasdf","neeva","Raghuvaran",true);
-    std::cout << dao.canTrust("Raghuvaran","hell") << std::endl;
-    std::cout << dao.canTrust("Raghuvaran","helo") << std::endl;
-    std::cout << dao.canTrust("Raghuvaran","hello") << std::endl;
-    std::cout << dao.canTrust("Raghuvaran","hello3") << std::endl;
-    std::cout << dao.canTrust("Raghuvaran","hellosdf") << std::endl;
-
-
-
-
-}
+//int main(){
+//    Dao dao;
+//
+////    dao.createUser("Raghu","asdfasdf","neeva","Raghuvaran",true);
+//    std::cout << dao.canTrust("Raghuvaran","hell") << std::endl;
+//    std::cout << dao.canTrust("Raghuvaran","helo") << std::endl;
+//    std::cout << dao.canTrust("Raghuvaran","hello") << std::endl;
+//    std::cout << dao.canTrust("Raghuvaran","hello3") << std::endl;
+//    std::cout << dao.canTrust("Raghuvaran","hellosdf") << std::endl;
+//
+//    rapidjson::Document note; note.SetObject(); auto& allocator = note.GetAllocator();
+//    std::string
+//        title = "Hi how are you doing?",
+//        body  = "He picks up the line by numbytes in fseek, but the data line may vary and numbytes not be accurate, how can I fix this?",
+//        owner = "Raghuvaran";
+//
+//    rapidjson::Value tmp_val;
+//    tmp_val.SetInt(-1);
+//    note.AddMember("noteId",tmp_val,allocator);
+//    tmp_val.SetString(&title[0],title.length(),allocator);
+//    note.AddMember("noteTitle",tmp_val,allocator);
+//    tmp_val.SetString(&body[0],body.length(),allocator);
+//    note.AddMember("noteBody",tmp_val,allocator);
+//    tmp_val.SetString(&owner[0],owner.length(),allocator);
+//    note.AddMember("owner",tmp_val,allocator);
+//
+//
+//    std::cout << dao.getNotesList("Raghuv") <<std::endl;
+//
+//
+//
+//}

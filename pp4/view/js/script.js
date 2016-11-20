@@ -156,9 +156,10 @@ function updateNote(noteIndex, mode){
         case put:    outJson.identifier = "p"; break;
         case del:    outJson.identifier = "d"; break;
     }
-    outJson.note.noteId = noteIndex;
-    outJson.note.noteTitle = nTitle;
-    outJson.note.noteBody  = nBody;
+    outJson.userName   = userName;
+    outJson.noteId     = noteIndex;
+    outJson.noteTitle  = nTitle;
+    outJson.noteBody   = nBody;
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", cgiPath, true);

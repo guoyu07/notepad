@@ -17,9 +17,18 @@ class Dao {
     std::ofstream outFile;
     std::ifstream inFile;
 
-public:
+    //Json keys
+//    const char
+//    *noteId       = "noteId",
+//    *noteTitle    = "noteTitle",
+//    *noteBody     = "noteBody",
+//    *userName     = "userName",
+//    *password     = "password",
+//    *lastLogin    = "lastLogin",
+//    *lastModified = "lastModified";
 
-    int getNewUserId();
+public:
+    int getNewNoteId();
 
     bool canTrust(std::string userName, std::string password);
 
@@ -29,23 +38,23 @@ public:
 
     bool createUser (std::string userName, std::string password,std::string lastLogin, std::string createdByAdminUserName, bool isRegular);
 
-    void updateUser(rapidjson::Document updatedUser);
+    void updateUser(rapidjson::Document &updatedUser);
 
-    void deleteUser(rapidjson::Document deleteUser);
+    void deleteUser(rapidjson::Document &deleteUser);
 
     bool doesUserExists(std::string userName);
 
-    rapidjson::Document getNotesList(std::string userName);
+    std::string getNotesList(std::string userName);
 
     rapidjson::Document getNotesList(int userId);
 
-    rapidjson::Document getNote(int NoteId);
+    rapidjson::Document getNote(int noteId);
 
-    void createNote(rapidjson::Document note);
+    void createNote(rapidjson::Document &note);
 
-    void updateNote(rapidjson::Document note);
+    bool updateNote(rapidjson::Document &note, bool shouldDelete);
 
-    void deleteNote(rapidjson::Document note);
+    void deleteNote(rapidjson::Document &note);
 
 };
 
