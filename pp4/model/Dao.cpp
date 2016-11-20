@@ -138,6 +138,7 @@ std::string Dao::getNotesList(std::string userName) {
 
         rapidjson::Document json, outJson; outJson.SetObject(); rapidjson::Document::AllocatorType& allocator = outJson.GetAllocator();
         rapidjson::Value index, tmp_val, note; note.SetObject();
+        rapidjson::Value notesArray(rapidjson::kArrayType);
 
         int count = 0;
 
@@ -154,10 +155,12 @@ std::string Dao::getNotesList(std::string userName) {
                 note.AddMember("noteBody",json["noteBody"],allocator);
                 //note.AddMember("noteLastModified",json["lastModified"],allocator);
 
-                outJson.AddMember(index, note, allocator);
+                notesArray.PushBack(note,allocator);
+
 
             }
         }
+        outJson.AddMember("notes",notesArray,allocator);
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
 

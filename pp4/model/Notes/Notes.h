@@ -15,7 +15,7 @@ protected:
     std::string title, body, lastModified;
     User *userName;
 public:
-    Notes(int noteId, const std::string &title, const std::string &body, User *userName);
+    Notes(int noteId, const std::string &title, const std::string &body, User *owner);
 };
 
 

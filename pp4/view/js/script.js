@@ -16,9 +16,13 @@ var notes = {
     }
 };
 
-checkCookie();
 
 
+window.addEventListener("load", onLoadFunction);
+
+function onLoadFunction() {
+   checkCookie();
+}
 
 $('#login').on('click',function () {
     var userName, password;
@@ -39,11 +43,11 @@ function authenticate(userName, password){
     var xhttp = new XMLHttpRequest();
     var outJson = {};
     outJson.identifier = "a";
-    outJson.userName = escapeSpaces(userName);
+    outJson.userName = userName;
     outJson.password = password;
 
     xhttp.open("POST", cgiPath, true);
-    xhttp.send(JSON.stringify(outJson));
+    xhttp.send(escapeSpaces(JSON.stringify(outJson)));
     outJson = {}; password = "";
 
     xhttp.onreadystatechange = function () {
@@ -76,7 +80,7 @@ function getNotes() {
     outJson.userName = getCookie("uid");
 
     xhttp.open("POST", cgiPath, true);
-    xhttp.send(JSON.stringify(outJson));
+    xhttp.send(escapeSpaces(JSON.stringify(outJson)));
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){
@@ -94,8 +98,10 @@ function updateNotesDisplay() {
     $('#notesContainer').find('a')
         .remove()
         .end();
-    for(var i=0; i=notes.length; i++){
-        $('#notesContainer').find('a').append('<a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal('+i+');">'+notes[i].noteTitle+'</a>')
+    console.log(notes);
+    for(var i=0; i<notes.length; i++){
+        console.log("i:",i);
+        $('#notesContainer').append('<a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal('+i+');">'+notes[i].noteTitle+'</a>')
     }
 
 }
@@ -154,20 +160,20 @@ function updateNote(noteIndex, mode){
     var outJson = {};
 
     switch(mode){
-        case create: outJson.identifier = "c"; break;
-        case get:    outJson.identifier = "g"; break;
-        case put:    outJson.identifier = "p"; break;
-        case del:    outJson.identifier = "d"; break;
+        case create: outJson.identifier = "c";                                           break;
+        case get:    outJson.identifier = "g"; outJson.noteId = notes[noteIndex].noteId; break;
+        case put:    outJson.identifier = "p"; outJson.noteId = notes[noteIndex].noteId; break;
+        case del:    outJson.identifier = "d"; outJson.noteId = notes[noteIndex].noteId; break;
     }
+
+    outJson.noteTitle  = nTitle;
+    outJson.noteBody   = nBody;
     outJson.userName   = getCookie("uid");
-    outJson.noteId     = noteIndex;
-    outJson.noteTitle  = escapeSpaces(nTitle);
-    outJson.noteBody   = escapeSpaces(nBody);
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", cgiPath, true);
-    xhttp.send(JSON.stringify(outJson));
-    console.log("update Note:",JSON.stringify(outJson));
+    xhttp.send(escapeSpaces(JSON.stringify(outJson)));
+    console.log("update Note:",escapeSpaces(JSON.stringify(outJson)));
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
@@ -291,10 +297,12 @@ function checkCookie() {
     var user = getCookie("uid");
     if (user != "") {
        // user = prompt("Please enter your name:", "");
-        alert("Welcome again " + user);
+
+        $("#greeting").text("Hello " + getCookie("uid"));
+        getNotes();
 
     } else {
-            window.location = '/login/';
+            window.location = 'login/';
 
         // if (user != "" && user != null) {
         //     setCookie("username", user, 1);
