@@ -10,6 +10,7 @@
 #include <fstream>
 #include "../lib/rapidjson/document.h"
 #include "Users/User/User.h"
+#include "Notes/Note.h"
 
 class Dao {
     std::string users_db = "users_db.txt", notes_db = "note_db.txt";
@@ -26,7 +27,7 @@ class Dao {
 //    *password     = "password",
 //    *lastLogin    = "lastLogin",
 //    *lastModified = "lastModified";
-
+    std::string getTimeStamp();
 public:
     int getNewNoteId();
 
@@ -38,9 +39,9 @@ public:
 
     bool createUser (std::string userName, std::string password,std::string lastLogin, std::string createdByAdminUserName, bool isRegular);
 
-    void updateUser(rapidjson::Document &updatedUser);
+    bool updateUser(User* user, bool shouldDelete);
 
-    void deleteUser(rapidjson::Document &deleteUser);
+    bool deleteUser(User* user);
 
     bool doesUserExists(std::string userName);
 
@@ -48,11 +49,12 @@ public:
 
     rapidjson::Document getNotesList(int userId);
 
-    rapidjson::Document getNote(int noteId);
+    Note* getNote(int noteId);
 
     void createNote(rapidjson::Document &note);
 
     bool updateNote(rapidjson::Document &note, bool shouldDelete);
+    bool updateNote(Note* note, bool shouldDelete);
 
     void deleteNote(rapidjson::Document &note);
 

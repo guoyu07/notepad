@@ -26,6 +26,21 @@ bool Manager::authenticate(std::string jsonStr) {
     return false;
 }
 
+std::string Manager::getRecentLogin(std::string jsonStr) {
+    rapidjson::Document json; json.Parse(jsonStr.c_str());
+
+    if(json.HasMember("userName") &&
+            json["userName"].IsString() &&
+            json["userName"].GetString() != ""){
+        User* user = dao.getUser(json["userName"].GetString());
+        std::string lastLogin = user->getLastLogin();
+        delete user;
+        return lastLogin;
+    }
+
+
+}
+
 void Manager::createNote(std::string userName, std::string title, std::string body) {
     rapidjson::Document json; json.SetObject(); auto& allocator = json.GetAllocator();
 

@@ -12,7 +12,6 @@ class User {
 protected:
     std::string userName, password, lastLogin;
 
-    std::string getTimeStamp();
 public:
     User();
     User(const std::string &userName, const std::string &password, const std::string &lastLogin);

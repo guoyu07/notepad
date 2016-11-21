@@ -23,6 +23,10 @@ int main() {
         case 'a':
             tmp_val.SetBool(manager.authenticate(inJsonRequest));
             outJson.AddMember("areValid",tmp_val,allocator);
+            inJsonRequest = manager.getRecentLogin(inJsonRequest);
+            tmp_val.SetString(inJsonRequest.c_str(), inJsonRequest.length(), allocator);
+            outJson.AddMember("lastLogin",tmp_val,allocator);
+
             goto send_response;
             break;
         case 'c':

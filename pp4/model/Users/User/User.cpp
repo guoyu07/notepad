@@ -28,20 +28,6 @@ void User::setMaxFailuresAllowed(int maxFailuresAllowed) {
 
 }
 
-std::string User::getTimeStamp() {
-    time_t rawtime;
-    struct tm * timeinfo;
-    char buffer[80];
-
-    std::time (&rawtime);
-    timeinfo = std::localtime(&rawtime);
-
-    std::strftime(buffer,80,"%d-%m-%Y %I:%M:%S",timeinfo);
-    std::string str(buffer);
-
-    return str;
-}
-
 void User::clearFailedLogins() {
 
 }

@@ -13,6 +13,7 @@ class Manager {
 public:
     bool authenticate(std::string userName, std::string password);
     bool authenticate(std::string jsonStr);
+    std::string getRecentLogin(std::string userName);
 
     void createNote(std::string userName, std::string title, std::string body);
     bool createNote(std::string jsonStr);
