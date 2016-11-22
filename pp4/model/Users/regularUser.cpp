@@ -11,6 +11,11 @@ std::string regularUser::getUserType() {
 regularUser::regularUser(const std::string &userName, const std::string &password,const std::string &lastLogin, User* parent) : User(userName, password, lastLogin),
                                                                                            parent(parent) {}
 
+regularUser::regularUser(const std::string &userName, const std::string &password, const std::string &lastLogin) : User(
+        userName, password, lastLogin) {
+
+}
+
 int regularUser::getMaxFailuresAllowed() const {
     return maxFailuresAllowed;
 }

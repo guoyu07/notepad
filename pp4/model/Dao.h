@@ -27,7 +27,7 @@ class Dao {
 //    *password     = "password",
 //    *lastLogin    = "lastLogin",
 //    *lastModified = "lastModified";
-    std::string getTimeStamp();
+    rapidjson::Value& setString(rapidjson::Value& value, std::string string, rapidjson::Document::AllocatorType& allocator);
 public:
     int getNewNoteId();
 
@@ -37,7 +37,7 @@ public:
 
     User* getUser(std::string userName);
 
-    bool createUser (std::string userName, std::string password,std::string lastLogin, std::string createdByAdminUserName, bool isRegular);
+    bool createUser (std::string userName, std::string password, std::string createdByAdminUserName, bool isRegular,std::string lastLogin);
 
     bool updateUser(User* user, bool shouldDelete);
 
@@ -51,7 +51,7 @@ public:
 
     Note* getNote(int noteId);
 
-    void createNote(rapidjson::Document &note);
+    int createNote(Note* note);
 
     bool updateNote(rapidjson::Document &note, bool shouldDelete);
     bool updateNote(Note* note, bool shouldDelete);

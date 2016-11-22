@@ -23,9 +23,7 @@ bool Dao::canTrust(std::string userName, std::string password) {
             if(json["userName"].GetString() == userName && json["password"].GetString() == password){
                 inFile.close();
                 //TODO update lastLogin
-                User* user = new User(userName,password,getTimeStamp());
-                updateUser(user,false);
-                delete user;
+
                 return true;
             }//TODO else update invalid login counter
 
@@ -55,11 +53,11 @@ User* Dao::getUser(std::string userName) {
                 if(json["userName"].GetString() == userName){
                     inFile.close();
                     User* user;
-                    if(json["parent"].GetString() == userName){
-                        user = new adminUser(json["userName"].GetString(),json["password"].GetString(),json["lastLogin"].GetString());
-                    }else{
-                        user = new regularUser(json["userName"].GetString(),json["password"].GetString(),json["lastLogin"].GetString(),getUser(json["parent"].GetString()));
-                    }
+//                    if(json["parent"].GetString() == userName){
+//                        user = new adminUser(json["userName"].GetString(),json["password"].GetString(),json["lastLogin"].GetString());
+//                    }else{
+                        user = new regularUser(json["userName"].GetString(),json["password"].GetString(),json["lastLogin"].GetString());
+//                    }
                     return user;
                 }
                 std::getline(inFile,tmp_str);tmp_char = &tmp_str[0]; json.Parse(tmp_char);
@@ -71,7 +69,7 @@ User* Dao::getUser(std::string userName) {
     return new User();
 }
 
-bool Dao::createUser(std::string userName, std::string password,std::string lastLogin, std::string createdByAdminUserName, bool isRegular) {
+bool Dao::createUser(std::string userName, std::string password, std::string createdByAdminUserName, bool isRegular,std::string lastLogin) {
     if(doesUserExists(userName)) return false;
     User* newUser;
     if(isRegular){
@@ -202,7 +200,7 @@ std::string Dao::getNotesList(std::string userName) {
                 note.AddMember("noteId",json["noteId"],allocator);
                 note.AddMember("noteTitle",json["noteTitle"],allocator);
                 note.AddMember("noteBody",json["noteBody"],allocator);
-                //note.AddMember("noteLastModified",json["lastModified"],allocator);
+                note.AddMember("noteLastModified",json["noteLastModified"],allocator);
 
                 notesArray.PushBack(note,allocator);
 
@@ -227,7 +225,7 @@ rapidjson::Document Dao::getNotesList(int userId) {
 //haven't tested
 Note* Dao::getNote(int noteId) {
     if(noteId >= 0){
-        if(!inFile.is_open()) { inFile.open(users_db);}
+        if(!inFile.is_open()) { inFile.open(notes_db);}
         if(inFile.good()){
             std::string tmp_str;
             char* tmp_char;
@@ -238,7 +236,7 @@ Note* Dao::getNote(int noteId) {
                 if(json["noteId"].GetInt() == noteId){
                     inFile.close();
                     Note* note = new
-                    Note(noteId, json["noteTitle"].GetString(), json["noteBody"].GetString(), json["lastModified"].GetString(), getUser(json["userName"].GetString()));
+                    Note(noteId, json["noteTitle"].GetString(), json["noteBody"].GetString(), json["noteLastModified"].GetString(), getUser(json["userName"].GetString()));
                     return note;
                 }
             }
@@ -248,17 +246,16 @@ Note* Dao::getNote(int noteId) {
     return new Note();
 }
 
-void Dao::createNote(rapidjson::Document &note) {
+int Dao::createNote(Note* note) {
     rapidjson::Document json; json.SetObject(); rapidjson::Document::AllocatorType& allocator = json.GetAllocator();
     rapidjson::Value tmp_val;
 
-    if(note.HasMember("noteTitle") && note.HasMember("noteBody") && note.HasMember("userName") &&
-            note["noteTitle"].IsString() && note["noteBody"].IsString() && note["userName"].IsString() &&
-            note["noteTitle"].GetString() != "" && note["noteBody"].GetString() != "" && note["userName"].GetString() != ""){
-        tmp_val.SetInt(getNewNoteId()); json.AddMember("noteId",tmp_val,allocator);
-        tmp_val = note["noteTitle"];    json.AddMember("noteTitle",tmp_val,allocator);
-        tmp_val = note["noteBody"];     json.AddMember("noteBody",tmp_val,allocator);
-        tmp_val = note["userName"];        json.AddMember("userName",tmp_val,allocator);
+
+        tmp_val.SetInt(getNewNoteId());                     json.AddMember("noteId",tmp_val,allocator);
+        setString(tmp_val,note->getTitle(),allocator);                         json.AddMember("noteTitle",tmp_val,allocator);
+        setString(tmp_val,note->getBody(),allocator);                           json.AddMember("noteBody",tmp_val,allocator);
+        setString(tmp_val,note->getUserName()->getUserName(),allocator);        json.AddMember("userName",tmp_val,allocator);
+        setString(tmp_val,note->getLastModified(),allocator);                   json.AddMember("noteLastModified",tmp_val,allocator);
 
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
@@ -268,8 +265,8 @@ void Dao::createNote(rapidjson::Document &note) {
         if(!outFile.is_open()){outFile.open(notes_db,std::ios_base::app);}
         outFile << buffer.GetString() << std::endl;
         outFile.close();
-    }
 
+        return note->getNoteId();
 }
 
 bool Dao::updateNote(rapidjson::Document &note, bool shouldDelete) {
@@ -350,7 +347,7 @@ bool Dao::updateNote(Note *note, bool shouldDelete) {
                 if(shouldDelete) {didSkip = true; continue;}
                 rapidjson::Value &title = json["noteTitle"]; title.SetString(note->getTitle().c_str(),note->getTitle().length());
                 rapidjson::Value &body  = json["noteBody"];  body.SetString(note->getBody().c_str(), note->getBody().length());
-                rapidjson::Value &lastM = json["lastModified"]; lastM.SetString(note->getLastModified().c_str(), note->getLastModified().length());
+                rapidjson::Value &lastM = json["noteLastModified"]; lastM.SetString(note->getLastModified().c_str(), note->getLastModified().length());
 
                 json.Accept(writer);
                 outFile << buffer.GetString() << std::endl;
@@ -401,19 +398,11 @@ int Dao::getNewNoteId(){
     return ++id;
 }
 
-std::string Dao::getTimeStamp() {
-    time_t rawtime;
-    struct tm * timeinfo;
-    char buffer[80];
-
-    std::time (&rawtime);
-    timeinfo = std::localtime(&rawtime);
-
-    std::strftime(buffer,80,"%d-%m-%Y %I:%M:%S",timeinfo);
-    std::string str(buffer);
-
-    return str;
+rapidjson::Value &Dao::setString(rapidjson::Value &value, std::string string, rapidjson::Document::AllocatorType& allocator) {
+    value.SetString(string.c_str(),string.length(),allocator);
+    return value;
 }
+
 //int main(){
 //    Dao dao;
 //

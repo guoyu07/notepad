@@ -11,7 +11,7 @@ int main() {
     //receive inJson into string
     std::stringstream inBuff;
 
-    std::string inJsonRequest = inBuff.str();
+    std::string temp_str, inJsonRequest = inBuff.str();
     std::cin >> inJsonRequest;
     rapidjson::Document inJson, outJson; outJson.SetObject(); auto &allocator = outJson.GetAllocator();
     rapidjson::Value tmp_val;
@@ -21,29 +21,34 @@ int main() {
 
     switch (inJson["identifier"].GetString()[0]){
         case 'a':
+            temp_str = manager.getRecentLogin(inJsonRequest);
+            tmp_val.SetString(temp_str.c_str(), temp_str.length(), allocator);
+            outJson.AddMember("lastLogin",tmp_val,allocator);
             tmp_val.SetBool(manager.authenticate(inJsonRequest));
             outJson.AddMember("areValid",tmp_val,allocator);
-            inJsonRequest = manager.getRecentLogin(inJsonRequest);
-            tmp_val.SetString(inJsonRequest.c_str(), inJsonRequest.length(), allocator);
-            outJson.AddMember("lastLogin",tmp_val,allocator);
 
             goto send_response;
-            break;
+//            break;
+        case 'n':
+            tmp_val.SetBool(manager.createUser(inJsonRequest));
+            outJson.AddMember("success",tmp_val,allocator);
+            goto send_response;
+//            break;
         case 'c':
             tmp_val.SetBool(manager.createNote(inJsonRequest));
             outJson.AddMember("success",tmp_val,allocator);
             goto send_response;
-            break;
+//            break;
         case 'p':
             tmp_val.SetBool(manager.updateNote(inJsonRequest));
             outJson.AddMember("success",tmp_val,allocator);
             goto send_response;
-            break;
+//            break;
         case 'd':
             tmp_val.SetBool(manager.deleteNote(inJsonRequest));
             outJson.AddMember("success",tmp_val,allocator);
             goto send_response;
-            break;
+//            break;
         case 'g':
             inJsonRequest = manager.getNotesList(inJsonRequest);
             if(!inJsonRequest.empty()) {

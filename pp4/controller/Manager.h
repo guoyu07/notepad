@@ -10,10 +10,13 @@
 
 class Manager {
     Dao dao;
+    std::string getTimeStamp();
 public:
     bool authenticate(std::string userName, std::string password);
     bool authenticate(std::string jsonStr);
     std::string getRecentLogin(std::string userName);
+
+    bool createUser(std::string jsonStr);
 
     void createNote(std::string userName, std::string title, std::string body);
     bool createNote(std::string jsonStr);

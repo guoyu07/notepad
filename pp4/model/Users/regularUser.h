@@ -15,6 +15,7 @@ protected:
     int failedLogins, maxFailuresAllowed;
 public:
     regularUser(const std::string &userName, const std::string &password, const std::string &lastLogin, User* parent);
+    regularUser(const std::string &userName, const std::string &password, const std::string &lastLogin);
 
     virtual std::string getUserType() override;
 
