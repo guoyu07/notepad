@@ -30,8 +30,11 @@ int main() {
             goto send_response;
 //            break;
         case 'n':
+            temp_str = "Never";
+            tmp_val.SetString(temp_str.c_str(), temp_str.length(), allocator);
+            outJson.AddMember("lastLogin",tmp_val,allocator);
             tmp_val.SetBool(manager.createUser(inJsonRequest));
-            outJson.AddMember("success",tmp_val,allocator);
+            outJson.AddMember("areValid",tmp_val,allocator);
             goto send_response;
 //            break;
         case 'c':

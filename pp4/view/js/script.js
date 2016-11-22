@@ -6,13 +6,13 @@ var notes = {
       "noteId" : -1,
       "noteTitle" : "dummy1",
       "noteBody" : "dummy11",
-      "lastModifiedOn" : "never1"
+      "noteLastModified" : "never1"
   },
     1:{
         "noteId" : -2,
         "noteTitle" : "dummy2",
         "noteBody" : "dummy21",
-        "lastModifiedOn" : "never2"
+        "noteLastModified" : "never2"
     }
 };
 
@@ -110,6 +110,7 @@ function displayNoteModal(noteIndex){
     if(noteIndex >= 0) {
         $("#noteTitle").val(notes[noteIndex].noteTitle);
         $("#noteBody").val(notes[noteIndex].noteBody);
+        $("#noteLastModified").find('em').text('Last Modified : '+notes[noteIndex].noteLastModified);
     }
 
     var createHandler = function () {
@@ -299,6 +300,7 @@ function checkCookie() {
        // user = prompt("Please enter your name:", "");
 
         $("#greeting").text("Hello " + getCookie("uid"));
+        $("#lastLogin").text('<strong>Recent Login: </strong>'+getCookie("ll"));
         getNotes();
 
     } else {

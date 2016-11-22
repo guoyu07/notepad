@@ -18,15 +18,34 @@ $('#login').on('click',function () {
 //TODO has-warning
     }else{
 
-        authenticate(userName,password);
+        authenticate(userName,password,false);
     }
 });
 
+$('#signup').on('click',function () {
+    var userName, password;
+    userName = $('#username').val();
+    password = $('#password').val();
+    if(userName == "" || userName == null){
+//TODO has-warning
+    }else if(password == "" || password == null){
+//TODO has-warning
+    }else{
+
+        authenticate(userName,password,true);
+    }
+});
+
+
 //authenticate and set cookie
-function authenticate(userName, password){
+function authenticate(userName, password, isSignUp){
     var xhttp = new XMLHttpRequest();
     var outJson = {};
-    outJson.identifier = "a";
+    if(Boolean(isSignUp)){
+        outJson.identifier = "a";
+    }else{
+        outJson.identifier = "n";
+    }
     outJson.userName = escapeSpaces(userName);
     outJson.password = password;
     $('#password').val("************************");
@@ -39,10 +58,12 @@ function authenticate(userName, password){
         if(this.readyState == 4 && this.status == 200){
             var inJson = JSON.parse(this.responseText);
             var areValid = Boolean(inJson.areValid);
+            var lastLogin= inJson.lastLogin;
 
             if(areValid){
                 console.log(userName, "is authenticated successfully")
                 setCookie("uid",userName,1);
+                setCookie("ll", lastLogin,1);
                 checkCookie();
             }else{
                 //throw error

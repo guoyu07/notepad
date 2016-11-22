@@ -91,6 +91,7 @@ bool Manager::createNote(std::string jsonStr) {
             json["noteTitle"].GetString() != "" &&
 //            json["noteBody"].IsString() &&
             json["noteBody"].GetString() != "") {
+
         User* user = dao.getUser(json["userName"].GetString());
         Note* note = new Note(-1, json["noteTitle"].GetString(), json["noteBody"].GetString(), getTimeStamp(), user);
         if(dao.createNote(note)){
