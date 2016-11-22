@@ -14,71 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efb7aa7f-b7f6-4b63-a630-a68c7a724503" name="Default" comment="It says modified and I am committing">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README" afterPath="$PROJECT_DIR$/../README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/controller/.nfs000000000124ffff0000fc20" afterPath="$PROJECT_DIR$/../TicTacToe/controller/.nfs000000000124ffff0000fc20" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/ttt" afterPath="$PROJECT_DIR$/../TicTacToe/ttt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../classNotes/10_10/graph.png" afterPath="$PROJECT_DIR$/../classNotes/10_10/graph.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../classNotes/9_19/a.out" afterPath="$PROJECT_DIR$/../classNotes/9_19/a.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run" afterPath="$PROJECT_DIR$/run" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/Makefile" afterPath="$PROJECT_DIR$/../TicTacToe/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/controller/TTTController.cpp" afterPath="$PROJECT_DIR$/../TicTacToe/controller/TTTController.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/controller/TTTController.h" afterPath="$PROJECT_DIR$/../TicTacToe/controller/TTTController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/controller/ttt_controller.cpp" afterPath="$PROJECT_DIR$/../TicTacToe/controller/ttt_controller.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/controller/ttt_controller.h" afterPath="$PROJECT_DIR$/../TicTacToe/controller/ttt_controller.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/controller/ttt_controller.h.gch" afterPath="$PROJECT_DIR$/../TicTacToe/controller/ttt_controller.h.gch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/main.cpp" afterPath="$PROJECT_DIR$/../TicTacToe/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/model/Board.cpp" afterPath="$PROJECT_DIR$/../TicTacToe/model/Board.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/model/Board.h" afterPath="$PROJECT_DIR$/../TicTacToe/model/Board.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/model/Player.cpp" afterPath="$PROJECT_DIR$/../TicTacToe/model/Player.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/model/Player.h" afterPath="$PROJECT_DIR$/../TicTacToe/model/Player.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TicTacToe/sampleTest.cpp" afterPath="$PROJECT_DIR$/../TicTacToe/sampleTest.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../classNotes/10_10/client_server.ps" afterPath="$PROJECT_DIR$/../classNotes/10_10/client_server.ps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../classNotes/9_19/fileIO.cpp" afterPath="$PROJECT_DIR$/../classNotes/9_19/fileIO.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../classNotes/9_19/output.dat" afterPath="$PROJECT_DIR$/../classNotes/9_19/output.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pp2.iml" afterPath="$PROJECT_DIR$/.idea/pp2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Makefile" afterPath="$PROJECT_DIR$/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/TTTController.cpp" afterPath="$PROJECT_DIR$/controller/TTTController.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/TTTController.h" afterPath="$PROJECT_DIR$/controller/TTTController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filePlayers.txt" afterPath="$PROJECT_DIR$/filePlayers.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filePlayers.txt3" afterPath="$PROJECT_DIR$/filePlayers.txt3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_cli.cpp" afterPath="$PROJECT_DIR$/main_cli.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Board.cpp" afterPath="$PROJECT_DIR$/model/Board.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Board.h" afterPath="$PROJECT_DIR$/model/Board.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Player.cpp" afterPath="$PROJECT_DIR$/model/Player.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Player.h" afterPath="$PROJECT_DIR$/model/Player.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/PlayerDao.cpp" afterPath="$PROJECT_DIR$/model/PlayerDao.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/PlayerDao.h" afterPath="$PROJECT_DIR$/model/PlayerDao.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sampleTest.cpp" afterPath="$PROJECT_DIR$/sampleTest.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDir/.idea/misc.xml" afterPath="$PROJECT_DIR$/testDir/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDir/.idea/modules.xml" afterPath="$PROJECT_DIR$/testDir/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDir/.idea/testDir.iml" afterPath="$PROJECT_DIR$/testDir/.idea/testDir.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDir/.idea/workspace.xml" afterPath="$PROJECT_DIR$/testDir/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDir/CMakeLists.txt" afterPath="$PROJECT_DIR$/testDir/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testDir/test.cpp" afterPath="$PROJECT_DIR$/testDir/test.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/cgi-bin/filePlayers.txt" afterPath="$PROJECT_DIR$/view/cgi-bin/filePlayers.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/cgi-bin/log.txt" afterPath="$PROJECT_DIR$/view/cgi-bin/log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/cgi-bin/ttt.cgi" afterPath="$PROJECT_DIR$/view/cgi-bin/ttt.cgi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/css/bootstrap.css" afterPath="$PROJECT_DIR$/view/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/css/delete.css" afterPath="$PROJECT_DIR$/view/css/delete.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/css/style.css" afterPath="$PROJECT_DIR$/view/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/view/fonts/glyphicons-halflings-regular.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/index.html" afterPath="$PROJECT_DIR$/view/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/js/bootstrap.js" afterPath="$PROJECT_DIR$/view/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/js/jquery-1.11.3.min.js" afterPath="$PROJECT_DIR$/view/js/jquery-1.11.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/js/script.js" afterPath="$PROJECT_DIR$/view/js/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/test.html" afterPath="$PROJECT_DIR$/view/test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pp2_her/web.txt" afterPath="$PROJECT_DIR$/../pp2_her/web.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pp2_her/web_auto.txt" afterPath="$PROJECT_DIR$/../pp2_her/web_auto.txt" />
     </list>
     <list id="8661cf41-8360-4280-a18e-cf28e0044b92" name="Rejected commit: Default" comment="It says modified and I am committing" />
     <ignored path="pp2.iws" />
@@ -104,7 +41,7 @@
           <file leaf-file-name="PlayerDao.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/PlayerDao.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
+                <state relative-caret-position="240">
                   <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
                   <folding />
                 </state>
@@ -114,7 +51,7 @@
           <file leaf-file-name="PlayerDao.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/PlayerDao.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
+                <state relative-caret-position="180">
                   <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
                   <folding />
                 </state>
@@ -124,7 +61,7 @@
           <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
+                <state relative-caret-position="90">
                   <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
                   <folding />
                 </state>
@@ -134,7 +71,7 @@
           <file leaf-file-name="TTTController.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controller/TTTController.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3213">
+                <state relative-caret-position="2835">
                   <caret line="189" column="22" selection-start-line="189" selection-start-column="22" selection-end-line="189" selection-end-column="22" />
                   <folding />
                 </state>
@@ -144,7 +81,7 @@
           <file leaf-file-name="Player.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/Player.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
+                <state relative-caret-position="255">
                   <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
                   <folding />
                 </state>
@@ -154,7 +91,7 @@
           <file leaf-file-name="TTTController.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controller/TTTController.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
+                <state relative-caret-position="390">
                   <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
                   <folding />
                 </state>
@@ -164,7 +101,7 @@
           <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1003">
+                <state relative-caret-position="885">
                   <caret line="59" column="71" selection-start-line="59" selection-start-column="71" selection-end-line="59" selection-end-column="71" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
@@ -176,7 +113,7 @@
           <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/view/js/script.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4505">
+                <state relative-caret-position="4065">
                   <caret line="271" column="45" selection-start-line="271" selection-start-column="45" selection-end-line="271" selection-end-column="45" />
                   <folding />
                 </state>
@@ -186,7 +123,7 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/view/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="432">
+                <state relative-caret-position="807">
                   <caret line="74" column="7" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
                   <folding>
                     <element signature="e#1143#1149#1" expanded="true" />
@@ -206,7 +143,7 @@
           <file leaf-file-name="delete.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/view/css/delete.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
+                <state relative-caret-position="525">
                   <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
                   <folding />
                 </state>
@@ -220,7 +157,7 @@
           <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/view/js/script.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="344">
+                <state relative-caret-position="4140">
                   <caret line="276" column="27" selection-start-line="276" selection-start-column="27" selection-end-line="276" selection-end-column="27" />
                   <folding />
                 </state>
@@ -281,9 +218,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1378" />
-    <option name="height" value="735" />
+    <option name="x" value="1680" />
+    <option name="width" value="1682" />
+    <option name="height" value="1054" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -631,17 +568,18 @@
       <workItem from="1476283009926" duration="45362000" />
       <workItem from="1476559638284" duration="669000" />
       <workItem from="1476660967313" duration="3773000" />
+      <workItem from="1479759995213" duration="13000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101316000" />
+    <option name="totallyTimeSpent" value="101329000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
+    <frame x="1680" y="0" width="1682" height="1054" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13656716" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13622664" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1719243" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
@@ -724,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,7 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,32 +906,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testDir/test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2235">
-          <caret line="149" column="1" selection-start-line="149" selection-start-column="1" selection-end-line="149" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testDir/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/testDir/test.cpp" />
+    <entry file="file://$PROJECT_DIR$/testDir/CMakeLists.txt" />
     <entry file="file://$PROJECT_DIR$/model/Player.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/include/c++/4.8/bits/stl_list.h" />
     <entry file="file://$PROJECT_DIR$/controller/TTTController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="390">
           <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
           <folding />
         </state>
@@ -1005,7 +927,7 @@
     <entry file="file:///usr/include/c++/4.8/bits/basic_string.h" />
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="90">
           <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
           <folding />
         </state>
@@ -1013,7 +935,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/PlayerDao.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="180">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
@@ -1021,7 +943,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/PlayerDao.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="240">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
@@ -1029,7 +951,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
+        <state relative-caret-position="885">
           <caret line="59" column="71" selection-start-line="59" selection-start-column="71" selection-end-line="59" selection-end-column="71" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -1039,23 +961,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/TTTController.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3213">
+        <state relative-caret-position="2835">
           <caret line="189" column="22" selection-start-line="189" selection-start-column="22" selection-end-line="189" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/css/delete.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/Player.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="255">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
@@ -1063,7 +977,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
+        <state relative-caret-position="807">
           <caret line="74" column="7" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
           <folding>
             <element signature="e#1143#1149#1" expanded="true" />
@@ -1079,9 +993,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/view/css/delete.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/view/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
+        <state relative-caret-position="4140">
           <caret line="276" column="27" selection-start-line="276" selection-start-column="27" selection-end-line="276" selection-end-column="27" />
           <folding />
         </state>
