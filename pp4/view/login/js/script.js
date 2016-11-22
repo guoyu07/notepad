@@ -42,9 +42,9 @@ function authenticate(userName, password, isSignUp){
     var xhttp = new XMLHttpRequest();
     var outJson = {};
     if(Boolean(isSignUp)){
-        outJson.identifier = "a";
-    }else{
         outJson.identifier = "n";
+    }else{
+        outJson.identifier = "a";
     }
     outJson.userName = escapeSpaces(userName);
     outJson.password = password;

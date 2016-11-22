@@ -3,8 +3,8 @@ CFLAGS= -Wall --std=c++11
 CFLAG= -g -Wall -Weffc++ -Wextra -pedantic
 LDFLAGS = -lm
 
-run:main.o User.o regularUser.o adminUser.o Notes.o Dao.o Manager.o
-	${CXX} ${CFLAGS} -o notes main.o User.o regularUser.o adminUser.o Notes.o Dao.o Manager.o -o notes.cgi
+run:main.o User.o regularUser.o adminUser.o Note.o Dao.o Manager.o
+	${CXX} ${CFLAGS} -o notes main.o User.o regularUser.o adminUser.o Note.o Dao.o Manager.o -o notes.cgi
 
 cli:main_cli.o Board.o Player.o TTTController.o PlayerDao.o
 	${CXX} ${CFLAGS} -o ttt main_cli.o Board.o Player.o TTTController.o PlayerDao.o -o ttt.cgi
@@ -24,8 +24,8 @@ User.o: ./model/Users/User/User.cpp
 Dao.o: ./model/Dao.cpp
 	${CXX} ${CFLAGS} -c ./model/Dao.cpp ./model/Dao.h
 
-Notes.o: ./model/Notes/Notes.cpp
-	${CXX} ${CFLAGS} -c ./model/Notes/Notes.cpp ./model/Notes/Notes.h
+Note.o: ./model/Notes/Note.cpp
+	${CXX} ${CFLAGS} -c ./model/Notes/Note.cpp ./model/Notes/Note.h
 
 regularUser.o: ./model/Users/regularUser.cpp 
 	${CXX} ${CFLAGS} -c ./model/Users/regularUser.cpp ./model/Users/regularUser.h

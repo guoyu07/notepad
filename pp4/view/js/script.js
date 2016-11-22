@@ -300,7 +300,7 @@ function checkCookie() {
        // user = prompt("Please enter your name:", "");
 
         $("#greeting").text("Hello " + getCookie("uid"));
-        $("#lastLogin").text('<strong>Recent Login: </strong>'+getCookie("ll"));
+        $("#lastLogin").find('em').append('<strong>Recent Login: </strong>'+getCookie("ll"));
         getNotes();
 
     } else {
