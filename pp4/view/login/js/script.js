@@ -104,8 +104,6 @@ function checkCookie() {
     var user = getCookie("uid");
     if (user != "") {
         // user = prompt("Please enter your name:", "");
-        alert("Welcome again " + user);
-
             window.location = '../';
 
     } else {
