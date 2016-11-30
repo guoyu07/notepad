@@ -8,6 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,10 +23,14 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <p><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-list" aria-hidden="true"> </span> Notepad</a></p>
+            <p><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span> Notepad</a></p>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="defaultNavbar1">
+            <ul class="nav navbar-nav">
+                <li class="active" id="listNav"><a href="#"><span class="glyphicon glyphicon-th-list" aria-hidden="true"> </span> List</a></li>
+                <li id="tilesNav"><a href="#"><span class="glyphicon glyphicon-th-large" aria-hidden="true"> </span> Tiles</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="disabled" id="lastLogin"><a href="#"><em></em></a></li>
                 <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"> </span> Logout</a></li>
@@ -55,11 +60,17 @@
 
             <!-- List group -->
             <div class="list-group text-left" id="notesContainer">
-                <a href ="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">Cras justo odio</a>
-                <a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal(2);">Dapibus ac facilisis in</a>
-                <a class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                <div id="listView">
+                    <a href ="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">Cras justo odio</a>
+                    <a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal(2);">Dapibus ac facilisis in</a>
+                    <a class="list-group-item list-group-item-action">Morbi leo risus</a>
+                    <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                    <a class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                </div>
+                <div id="tileView" style="display: none;">
+                    <div class="col-sm-4"><div class="tile purple"><h3 class="title">Pl</h3><p>Hello</p></div></div>
+                    <div class="col-sm-4"><div class="tile orange"><h3 class="title">Red Tile</h3><p>Hello Red, this is a colored tile.</p></div></div>
+                </div>
             </div>
         </div> </div>
 </div>

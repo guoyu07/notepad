@@ -208,7 +208,7 @@ std::string Manager::getTimeStamp() {
     std::time (&rawtime);
     timeinfo = std::localtime(&rawtime);
 
-    std::strftime(buffer,80,"%d-%m-%Y %I:%M:%S",timeinfo);
+    std::strftime(buffer,80,"%m/%d/%Y %I:%M:%S",timeinfo);
     std::string str(buffer);
 
     return str;

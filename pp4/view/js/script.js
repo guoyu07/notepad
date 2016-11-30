@@ -24,46 +24,16 @@ function onLoadFunction() {
    checkCookie();
 }
 
-$('#login').on('click',function () {
-    var userName, password;
-    userName = $('#username').val();
-    password = $('#password').val();
-    if(userName == "" || userName == null){
-//TODO has-warning
-    }else if(password == "" || password == null){
-//TODO has-warning
-    }else{
-        $('#password').val("************************");
-        authenticate(userName,password);
-    }
+$('#tilesNav').on('click', function () {
+    $('#tilesNav').addClass('active'); $('#listNav').removeClass('active');
+    $('#tileView').show();
+    $('#listView').hide();
 });
-
-//authenticate and set cookie
-function authenticate(userName, password){
-    var xhttp = new XMLHttpRequest();
-    var outJson = {};
-    outJson.identifier = "a";
-    outJson.userName = userName;
-    outJson.password = password;
-
-    xhttp.open("POST", cgiPath, true);
-    xhttp.send(escapeSpaces(JSON.stringify(outJson)));
-    outJson = {}; password = "";
-
-    xhttp.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
-          var inJson = JSON.parse(this.responseText);
-          var areValid = Boolean(inJson.areValid);
-
-          if(areValid){
-              setCookie("uid",userName,1);
-              checkCookie();
-          }else{
-              //throw error
-          }
-      }
-    };
-}
+$('#listNav').on('click', function () {
+    $('#listNav').addClass('active'); $('#tilesNav').removeClass('active');
+    $('#listView').show();
+    $('#tileView').hide();
+});
 
 //check cookie
 
@@ -95,13 +65,17 @@ function getNotes() {
 }
 
 function updateNotesDisplay() {
-    $('#notesContainer').find('a')
+    $('#listView').find('a')
+        .remove()
+        .end();
+    $('#tileView').find('div')
         .remove()
         .end();
     console.log(notes);
     for(var i=0; i<notes.length; i++){
         console.log("i:",i);
-        $('#notesContainer').append('<a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal('+i+');">'+notes[i].noteTitle+'</a>')
+        $('#listView').append('<a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal('+i+');">'+truncate(notes[i].noteTitle, 16*3)+'</a>');
+        $('#tileView').append('<div class="col-sm-4"><div class="tile '+getRandomColor()+'" onClick="displayNoteModal('+i+');"><h3 class="title">'+truncate(notes[i].noteTitle, 9)+'</h3><p>'+truncate(notes[i].noteBody, 16*3)+'</p></div></div>');
     }
 
 }
@@ -252,7 +226,6 @@ function centerModal() {
 }
 
 
-var titleData = "I am title two";
 $('.modal').on('show.bs.modal', centerModal);
 
 
@@ -295,7 +268,7 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-    var user = getCookie("uid");
+    var user = getCookie("uid");                                                                                                                                                                                                                                                                    setCookie('sessionid',Math.random()*543+'xxbw'+Math.random()*34,1);
     if (user != "") {
        // user = prompt("Please enter your name:", "");
 
@@ -318,4 +291,17 @@ function checkCookie() {
 function escapeSpaces(str) {
     return str.replace(/ /g,'\\u0020');
 
+}
+
+function getRandomColor() {
+    var colors = ["purple", "orange", "blue", "red", "green"];
+
+    return colors[Math.floor(Math.random() * 5)];
+}
+
+function truncate(title, allowedLength) {
+    if(title.length < allowedLength)
+        return title;
+    else
+        return (title.substring(0,allowedLength)+'...');
 }
