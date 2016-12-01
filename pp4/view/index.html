@@ -45,7 +45,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1 class="text-center" id="greeting">Hello &lt;userName&gt;</h1>
+            <h1 class="text-center" id="greeting">Bam!</h1>
         </div>
     </div>
     <hr>
@@ -55,7 +55,6 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <!--<div class="panel-heading text-left">Your Notes: <div></div></div></div>-->
                 <div class="panel-body">
                     <h5 class="col-md-3 text-left"><strong>Your Notes:</strong></h5>
                     <button type="button" class="btn btn-primary" id="createNote" style="float:right" onclick="displayNoteModal(-1)"><span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> New Note</button>
@@ -64,18 +63,12 @@
                 <!-- List group -->
                 <div class="text-left" id="notesContainer">
                     <div id="listView" class="list-group">
-                        <a href ="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">Cras justo odio</a>
-                        <a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal(2);">Dapibus ac facilisis in</a>
-                        <a class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                        <a class="list-group-item"><h2>... loading your notes ...</h2></a>
                     </div>
 
                 </div>
             </div>  <div id="tileView" style="display: none;">
-
-            <div class="col-sm-4"><div class="tile purple"><h3 class="title">Pl</h3><p>Hello</p></div></div>
-            <div class="col-sm-4"><div class="tile orange"><h3 class="title">Red Tile</h3><p>Hello Red, this is a colored tile.</p></div></div>
+            <div class="col-sm-4"><div class="tile purple"><h3 class="title">... loading ...</h3></div></div>
         </div></div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -83,7 +76,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+
                     <div class="form-group">
                         <label for="noteTitle">Title:</label>
                         <input type="text" class="form-control" id="noteTitle">
