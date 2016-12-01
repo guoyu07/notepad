@@ -61,12 +61,17 @@ function authenticate(userName, password, isSignUp){
             var lastLogin= inJson.lastLogin;
 
             if(areValid){
+                $("#username").parent().addClass('has-success');
+                $("#password").parent().addClass('has-success');
                 console.log(userName, "is authenticated successfully")
                 setCookie("uid",userName,1);
                 setCookie("ll", lastLogin,1);
+                if(lastLogin == "Never") alert('You have successfully signed up! \n Feel free to look around');
                 checkCookie();
             }else{
                 //throw error
+                $("#username").parent().addClass('has-error');
+                $("#password").parent().addClass('has-error');
                 console.log(userName, "is not authenticated")
             }
         }

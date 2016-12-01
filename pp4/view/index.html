@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Quick note taking web application">
     <title>Notepad - List view</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="https://people.cs.clemson.edu/~rchowda/images/android-desktop.png"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,60 +55,62 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <!-- Default panel contents -->
-                <div class="panel-heading text-left">Your Notes: <div></div></div></div>
-            <div class="panel-body">
-                <button type="button" class="btn btn-primary" id="createNote" style="float:right" onclick="displayNoteModal(-1)"><span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> New Note</button>
-            </div>
+                <!--<div class="panel-heading text-left">Your Notes: <div></div></div></div>-->
+                <div class="panel-body">
+                    <h5 class="col-md-3 text-left"><strong>Your Notes:</strong></h5>
+                    <button type="button" class="btn btn-primary" id="createNote" style="float:right" onclick="displayNoteModal(-1)"><span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> New Note</button>
+                </div>
 
-            <!-- List group -->
-            <div class="list-group text-left" id="notesContainer">
-                <div id="listView">
-                    <a href ="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">Cras justo odio</a>
-                    <a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal(2);">Dapibus ac facilisis in</a>
-                    <a class="list-group-item list-group-item-action">Morbi leo risus</a>
-                    <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                    <a class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                <!-- List group -->
+                <div class="text-left" id="notesContainer">
+                    <div id="listView" class="list-group">
+                        <a href ="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">Cras justo odio</a>
+                        <a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal(2);">Dapibus ac facilisis in</a>
+                        <a class="list-group-item list-group-item-action">Morbi leo risus</a>
+                        <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                        <a class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                    </div>
+
                 </div>
-                <div id="tileView" style="display: none;">
-                    <div class="col-sm-4"><div class="tile purple"><h3 class="title">Pl</h3><p>Hello</p></div></div>
-                    <div class="col-sm-4"><div class="tile orange"><h3 class="title">Red Tile</h3><p>Hello Red, this is a colored tile.</p></div></div>
+            </div>  <div id="tileView" style="display: none;">
+
+            <div class="col-sm-4"><div class="tile purple"><h3 class="title">Pl</h3><p>Hello</p></div></div>
+            <div class="col-sm-4"><div class="tile orange"><h3 class="title">Red Tile</h3><p>Hello Red, this is a colored tile.</p></div></div>
+        </div></div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+                    <div class="form-group">
+                        <label for="noteTitle">Title:</label>
+                        <input type="text" class="form-control" id="noteTitle">
+                    </div>
                 </div>
-            </div>
-        </div> </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
-                <div class="form-group">
-                    <label for="noteTitle">Title:</label>
-                    <input type="text" class="form-control" id="noteTitle">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="noteBody">Notes:</label>
+                        <textarea class="form-control" id="noteBody"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="noteBody">Notes:</label>
-                    <textarea class="form-control" id="noteBody"></textarea>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteNote" style="float:left"> <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span> Delete</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary pull-right" id="updateNote"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> </span> Save changes</button>
+                    <h5 class="pull-right" id="noteLastModified"><em></em></h5>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="deleteNote" style="float:left"> <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span> Delete</button>
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                <button type="button" class="btn btn-primary pull-right" id="updateNote"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> </span> Save changes</button>
-                <h5 class="pull-right" id="noteLastModified"><em></em></h5>
             </div>
         </div>
     </div>
-</div>
-<hr>
-<footer class="navbar-default navbar-fixed-bottom">
-    <div class="text-center col-md-6 col-md-offset-3">
-        <h4>Notepad</h4>
-        <p>Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a href="http://yourwebsite.com/">My Website</a></p>
-    </div>
-</footer>  <hr>
+
+    <footer class="navbar-default navbar-fixed-bottom">
+        <div class="text-center col-md-6 col-md-offset-3">
+            <h4>Notepad</h4>
+            <p>Copyright &copy; 2016 &middot; All Rights Reserved &middot; <a href="http://cecas.clemson.edu/~rchowda/">RV</a></p>
+        </div>
+    </footer>  <hr>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.11.2.min.js"></script>

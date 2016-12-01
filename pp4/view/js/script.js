@@ -85,6 +85,10 @@ function displayNoteModal(noteIndex){
         $("#noteTitle").val(notes[noteIndex].noteTitle);
         $("#noteBody").val(notes[noteIndex].noteBody);
         $("#noteLastModified").find('em').text('Last Modified : '+notes[noteIndex].noteLastModified);
+    }else{
+        $("#noteTitle").val("");
+        $("#noteBody").val("");
+        $("#noteLastModified").find('em').text("");
     }
 
     var createHandler = function () {
@@ -111,10 +115,18 @@ function displayNoteModal(noteIndex){
 
     if(noteIndex == -1){ //New note
         $("#deleteNote").hide();
-        $("#updateNote").on('click', createHandler);
+        $("#noteLastModified").hide()
+        $("#updateNote")
+            .show()
+            .on('click', createHandler);
     }else{              //update or delete
-        $("#updateNote").on('click', updateHandler);
-        $("#deleteNote").on('click', deleteHandler);
+        $("#noteLastModified").show()
+        $("#updateNote")
+            .show()
+            .on('click', updateHandler);
+        $("#deleteNote")
+            .show()
+            .on('click', deleteHandler);
     }
 
 
