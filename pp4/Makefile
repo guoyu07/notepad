@@ -6,7 +6,7 @@ LDFLAGS = -lm
 run:main.o User.o regularUser.o adminUser.o Note.o Dao.o Manager.o
 	${CXX} ${CFLAGS} -o notes main.o User.o regularUser.o adminUser.o Note.o Dao.o Manager.o -o notes.cgi
 	chmod 705 notes.cgi
-	mv notes.cgi view/cgi-bin/
+	cp notes.cgi view/cgi-bin/
 
 cli:main_cli.o Board.o Player.o TTTController.o PlayerDao.o
 	${CXX} ${CFLAGS} -o ttt main_cli.o Board.o Player.o TTTController.o PlayerDao.o -o ttt.cgi
