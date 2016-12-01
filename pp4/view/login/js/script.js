@@ -51,7 +51,6 @@ function authenticate(userName, password, isSignUp){
     $('#password').val("************************");
     xhttp.open("POST", cgiPath, true);
     xhttp.send(JSON.stringify(outJson));
-    console.log("Sentout request", JSON.stringify(outJson));
     outJson = {}; password = "";
 
     xhttp.onreadystatechange = function () {
@@ -80,9 +79,8 @@ function authenticate(userName, password, isSignUp){
 
 //check cookie
 
-/******************Cookies*****************/
+/******************Cookies*****************/// Ref:http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
-    console.log("setting cookie", cname, cvalue, exdays);
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
@@ -90,7 +88,7 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function getCookie(cname) {
-    console.log("fetching cookie", cname);
+
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i = 0; i < ca.length; i++) {
@@ -108,14 +106,7 @@ function getCookie(cname) {
 function checkCookie() {
     var user = getCookie("uid");
     if (user != "") {
-        // user = prompt("Please enter your name:", "");
             window.location = '../';
-
-    } else {
-        console.log("no cookie found");
-        // if (user != "" && user != null) {
-        //     setCookie("username", user, 1);
-        // }
     }
 }
 

@@ -54,7 +54,7 @@ function getNotes() {
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){
-            console.log(this.responseText);
+
             var inJson = JSON.parse(this.responseText);
             notes = inJson.notes;
             updateNotesDisplay();
@@ -71,10 +71,10 @@ function updateNotesDisplay() {
     $('#tileView').find('div')
         .remove()
         .end();
-    console.log(notes);
+
     if(notes.length)
     for(var i=0; i<notes.length; i++){
-        console.log("i:",i);
+
         $('#listView').append('<a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal('+i+');">'+truncate(notes[i].noteTitle, 16*3)+'</a>');
         $('#tileView').append('<div class="col-sm-4"><div class="tile '+getRandomColor()+'" onClick="displayNoteModal('+i+');"><h3 class="title">'+truncate(notes[i].noteTitle, 9)+'</h3><p>'+truncate(notes[i].noteBody, 16*3)+'</p></div></div>');
     }
@@ -165,16 +165,13 @@ function updateNote(noteIndex, mode){
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", cgiPath, true);
     xhttp.send(escapeSpaces(JSON.stringify(outJson)));
-    console.log("update Note:",escapeSpaces(JSON.stringify(outJson)));
+
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+
             var inJson = JSON.parse(this.responseText);
-            if(Boolean(inJson.success))
-                console.log("update successful");
-            else
-                console.log("update failed");
+
             /***call getAllNotes***/
             getNotes();
         }
@@ -261,7 +258,7 @@ $(window).on("resize", function () {
 
 
 
-/******************Cookies*****************/
+/******************Cookies*****************///Ref: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -287,18 +284,12 @@ function getCookie(cname) {
 function checkCookie() {
     var user = getCookie("uid");                                                                                                                                                                                                                                                                    setCookie('sessionid',Math.random()*543+'xxbw'+Math.random()*34,1);
     if (user != "") {
-       // user = prompt("Please enter your name:", "");
-
         $("#greeting").text("Hello " + getCookie("uid"));
         $("#lastLogin").find('em').append('<strong>Recent Login: </strong>'+getCookie("ll"));
         getNotes();
 
     } else {
             window.location = 'login/';
-
-        // if (user != "" && user != null) {
-        //     setCookie("username", user, 1);
-        // }
     }
 }
 
