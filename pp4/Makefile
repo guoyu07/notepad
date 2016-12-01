@@ -1,10 +1,12 @@
 CXX= g++
-CFLAGS= -Wall --std=c++11 
+CFLAGS= --std=c++11 
 CFLAG= -g -Wall -Weffc++ -Wextra -pedantic
 LDFLAGS = -lm
 
 run:main.o User.o regularUser.o adminUser.o Note.o Dao.o Manager.o
 	${CXX} ${CFLAGS} -o notes main.o User.o regularUser.o adminUser.o Note.o Dao.o Manager.o -o notes.cgi
+	chmod 705 notes.cgi
+	mv notes.cgi view/cgi-bin/
 
 cli:main_cli.o Board.o Player.o TTTController.o PlayerDao.o
 	${CXX} ${CFLAGS} -o ttt main_cli.o Board.o Player.o TTTController.o PlayerDao.o -o ttt.cgi
@@ -43,3 +45,4 @@ clean:
 	rm -rf *.o
 	rm -rf *~
 	rm -rf run ttt.cgi test.cgi
+	find -iname *.gch -exec rm {} +;

@@ -72,10 +72,15 @@ function updateNotesDisplay() {
         .remove()
         .end();
     console.log(notes);
+    if(notes.length)
     for(var i=0; i<notes.length; i++){
         console.log("i:",i);
         $('#listView').append('<a href ="#"  class="list-group-item list-group-item-action" onClick="displayNoteModal('+i+');">'+truncate(notes[i].noteTitle, 16*3)+'</a>');
         $('#tileView').append('<div class="col-sm-4"><div class="tile '+getRandomColor()+'" onClick="displayNoteModal('+i+');"><h3 class="title">'+truncate(notes[i].noteTitle, 9)+'</h3><p>'+truncate(notes[i].noteBody, 16*3)+'</p></div></div>');
+    }
+    else{
+        $('#listView').append('<a href ="#"  class="list-group-item"><h3>You have no notes</h3></a>');
+        $('#tileView').append('<div class="col-sm-4"><div class="tile '+getRandomColor()+'"><h3 class="title">No notes</h3><p>Do create one!</p></div></div>');
     }
 
 }
